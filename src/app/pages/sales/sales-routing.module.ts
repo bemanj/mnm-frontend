@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { OrderFormComponent } from './order-form/order-form.component';
+import { PrintComponent } from './order-form/print/print.component';
+import { OrderDetailComponent } from './order-form/selection/order-detail/order-detail.component';
+import { SelectProductComponent } from './order-form/selection/select-product/select-product.component';
 import { SalesDashboardComponent } from './sales-dashboard/sales-dashboard.component';
 import { SalesOrderComponent } from './sales-order/sales-order.component';
 import { SalesReportComponent } from './sales-report/sales-report.component';
@@ -20,6 +23,15 @@ const routes: Routes = [{
   }, {
     path: 'form/:id',
     component: OrderFormComponent,
+  }, {
+    path: 'print/:id',
+    component: PrintComponent,
+  }, {
+    path: 'detail',
+    component: OrderDetailComponent,
+  }, {
+    path: 'select',
+    component: SelectProductComponent,
   }, {
     path: 'report',
     component: SalesReportComponent,
@@ -43,6 +55,9 @@ export class SalesRoutingModule {
 
 export const routedComponents = [
   SalesComponent,
+  OrderDetailComponent,
+  SelectProductComponent,
+  PrintComponent,
   OrderFormComponent,
   SalesDashboardComponent,
   SalesSummaryComponent,
