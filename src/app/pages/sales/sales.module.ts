@@ -1,3 +1,4 @@
+import { InventoryService } from '../../@core/data/services/inventory/inventory.service';
 import { NgModule } from '@angular/core';
 import { DataTableModule } from 'angular-4-data-table/dist';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
@@ -19,7 +20,8 @@ import { routedComponents, SalesRoutingModule } from './sales-routing.module';
   ],
   providers: [
     SmartTableService,
-    CustomerService
+    CustomerService,
+    InventoryService
   ]
 })
 export class SalesModule { }

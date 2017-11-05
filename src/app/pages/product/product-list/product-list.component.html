@@ -1,3 +1,11 @@
-<p>
-  product-list works!
-</p>
+<nb-card>
+    <nb-card-header>
+        <button class="btn btn-success btn-rectangle btn-demo" (click)="save()">Add New</button>
+    </nb-card-header>
+  
+    <nb-card-body>
+      <ng2-smart-table [settings]="settings" [source]="source" (userRowSelect)="onUserRowSelect($event)">
+      </ng2-smart-table>
+    </nb-card-body>
+  </nb-card>
+  

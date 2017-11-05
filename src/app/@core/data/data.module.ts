@@ -6,6 +6,7 @@ import { ElectricityService } from './electricity.service';
 import { PlayerService } from './player.service';
 import { ConfigService } from './services/config/config.service';
 import { CustomerService } from './services/customer/customer.service';
+import { InventoryService } from './services/inventory/inventory.service';
 import { DetailService } from './services/sales/order/detail.service';
 import { HeaderService } from './services/sales/order/header.service';
 import { SalesReportService } from './services/sales/sales-report.service';
@@ -22,6 +23,7 @@ const SERVICES = [
   ConfigService,
   CustomerService,
   SalesReportService,
+  InventoryService,
   SalesSummaryComponent,
   HeaderService,
   DetailService

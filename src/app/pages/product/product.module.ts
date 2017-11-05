@@ -1,6 +1,8 @@
-import { ProductRoutingModule, routedComponents } from './product-routing.module';
-import { ThemeModule } from '../../@theme/theme.module';
 import { NgModule } from '@angular/core';
+
+import { ThemeModule } from '../../@theme/theme.module';
+import { ProductService } from './../../@core/data/services/product/product.service';
+import { ProductRoutingModule, routedComponents } from './product-routing.module';
 
 @NgModule({
   imports: [
@@ -10,5 +12,8 @@ import { NgModule } from '@angular/core';
   declarations: [
     ...routedComponents,
   ],
+  providers: [
+    ProductService
+  ]
 })
 export class ProductModule { }

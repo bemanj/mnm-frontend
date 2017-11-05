@@ -1,3 +1,4 @@
+import { InventoryService } from '../../../../../@core/data/services/inventory/inventory.service';
 import { SmartTableService } from './../../../../../@core/data/smart-table.service';
 import { Component, OnInit } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
@@ -15,43 +16,30 @@ import { LocalDataSource } from 'ng2-smart-table';
 export class SelectProductComponent implements OnInit {
 
   settings = {
-    add: {
-      addButtonContent: '<i class="nb-plus"></i>',
-      createButtonContent: '<i class="nb-checkmark"></i>',
-      cancelButtonContent: '<i class="nb-close"></i>',
-    },
-    edit: {
-      editButtonContent: '<i class="nb-edit"></i>',
-      saveButtonContent: '<i class="nb-checkmark"></i>',
-      cancelButtonContent: '<i class="nb-close"></i>',
-    },
-    delete: {
-      deleteButtonContent: '<i class="nb-trash"></i>',
-      confirmDelete: true,
-    },
+    actions: false,
     columns: {
-      id: {
+      StockId: {
         title: 'ID',
         type: 'number',
       },
-      firstName: {
-        title: 'First Name',
+      CategoryName: {
+        title: 'Category',
         type: 'string',
       },
-      lastName: {
-        title: 'Last Name',
+      ProductTitle: {
+        title: 'Product',
         type: 'string',
       },
-      username: {
-        title: 'Username',
-        type: 'string',
+      available_qty: {
+        title: 'Quantity',
+        type: 'number',
       },
-      email: {
-        title: 'E-mail',
-        type: 'string',
+      Price: {
+        title: 'Unit Price',
+        type: 'number',
       },
-      age: {
-        title: 'Age',
+      UOM: {
+        title: 'UOM',
         type: 'number',
       },
     },
@@ -59,18 +47,14 @@ export class SelectProductComponent implements OnInit {
 
   source: LocalDataSource = new LocalDataSource();
 
-  constructor(private service: SmartTableService) {
-    const data = this.service.getData();
-    this.source.load(data);
+  constructor(private service: SmartTableService,
+              private inventoryservice: InventoryService) {
+    
   }
 
-  onDeleteConfirm(event): void {
-    if (window.confirm('Are you sure you want to delete?')) {
-      event.confirm.resolve();
-    } else {
-      event.confirm.reject();
-    }
+  ngOnInit() {
+    this.inventoryservice.getAll().subscribe(i => {
+      this.source.load(i);
+    });
   }
-
-  ngOnInit() {}
 }
