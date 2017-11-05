@@ -1,0 +1,98 @@
+<div class="row">
+  <!-- <div class="col-4">
+    <button (click)="save()" id="btnSave" class="btn btn-primary">NEW Sales Order</button>
+  </div>   -->
+  <div class="col">
+    <h2>Total Sales of the Day: {{ totalSales }}</h2>
+  </div>
+  
+</div>
+<div class="row">
+  <div class="col">
+
+    <!-- <p>
+      <input 
+        #query
+        (keyup)="filter(query.value)"
+        type="text" class="form-control" placeholder="Search...">
+    </p> -->
+
+    <data-table
+    [items]="items"
+    [itemCount]="itemCount"
+    (reload)="reloadItems($event)"
+    [rowTooltip]="rowTooltip"
+    (rowDoubleClick)="rowDoubleClick($event)">
+    <data-table-column
+      [property]="'SalesOrderNumber'"  
+      [header]="'SO Number'"
+      [sortable]="true"
+      [resizable]="true"
+    >
+    </data-table-column>
+
+    <data-table-column
+    [property]="'OrderDate'"  
+    [header]="'Order Date'"
+    [sortable]="true"
+    [resizable]="true"
+  >
+    <ng-template #dataTableCell let-item="item">
+      {{ item.OrderDate | date }}
+    </ng-template>
+  </data-table-column>
+
+    <data-table-column
+      [property]="'SubTotal'"  
+      [header]="'Sub Total (PHP)'"
+      [sortable]="true"
+      [resizable]="true"
+    >
+      <ng-template #dataTableCell let-item="item">
+        {{ item.SubTotal | currency:'Php':true }}
+      </ng-template>
+    </data-table-column>
+
+    <data-table-column
+    [property]="'TaxAmt'"  
+    [header]="'Tax Amount (PHP)'"
+    [sortable]="true"
+    [resizable]="true"
+  >
+    <ng-template #dataTableCell let-item="item">
+      {{ item.TaxAmt | currency:'Php':true }}
+    </ng-template>
+  </data-table-column>
+
+  <data-table-column
+  [property]="'Freight'"  
+  [header]="'Freight (PHP)'"
+  [sortable]="true"
+  [resizable]="true"
+>
+  <ng-template #dataTableCell let-item="item">
+    {{ item.Freight | currency:'Php':true}}
+  </ng-template>
+</data-table-column>
+
+<data-table-column
+[property]="'TotalDue'"  
+[header]="'Total Due (PHP)'"
+[sortable]="true"
+[resizable]="true"
+>
+<ng-template #dataTableCell let-item="item">
+  {{ item.TotalDue | currency:'Php':true }}
+</ng-template>
+</data-table-column>
+    <!--<data-table-column
+      [property]="'$key'"  
+    >
+      <ng-template #dataTableCell let-item="item">
+        <a [routerLink]="['/admin/products/', item.$key]">Edit</a>
+      </ng-template>
+    </data-table-column> -->
+
+    </data-table>
+  </div>
+</div>

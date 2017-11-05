@@ -1,0 +1,59 @@
+<div class="row">
+    <div class="col-md-12">
+      <nb-card class="inline-form-card">
+        <nb-card-header>Sales Order Number: {{ salesorderid }}</nb-card-header>
+      </nb-card>
+    </div>
+  </div>
+
+<div class="row">
+  <div class="col-lg-6">
+    <nb-card>
+      <nb-card-header>
+        Select Customer
+        <button class="btn btn-primary btn-tn">Create New</button>
+      </nb-card-header>
+        <nb-card-body>
+          <div class="input-group">
+            <input type="text" placeholder="Search customer" class="form-control"/>
+          </div>
+          <div class="form-group">
+            <label>List of customer</label>
+            <select #customer="ngModel" [(ngModel)]="soHeader.Customer" (change)="onselectedcustomer(customer.value)" name="customer" id="customer" class="form-control" >
+                <option value=""></option>
+                <option *ngFor="let c of customer$" [value]="c.CustomerID">
+                  {{ c.CompanyName }}
+                </option>
+            </select>
+          </div>
+        </nb-card-body>
+    </nb-card>
+  </div>  
+  <div class="col-lg-6">
+      <nb-card>
+          <nb-card-header>
+            Customer Info
+            <button class="btn btn-primary btn-tn">Save </button>
+          </nb-card-header>
+          <nb-card-body>
+            <div class="input-group">
+              <input #company="ngModel" [(ngModel)]="customerinfo.CompanyName" name="company" id="company" type="text" placeholder="Company" class="form-control"/>
+            </div>
+            <div class="row full-name-inputs">
+              <div class="col-sm-6 input-group">
+                <input #person="ngModel" [(ngModel)]="customerinfo.ContactName" name="person" id="person" type="text" placeholder="Contact Person" class="form-control"/>
+              </div>
+              <div class="col-sm-6 input-group">
+                <input #terms="ngModel" [(ngModel)]="customerinfo.Terms" name="terms" id="terms" type="text" placeholder="Terms" class="form-control"/>
+              </div>
+            </div>
+            <div class="input-group input-group-sm">
+                <input type="text" placeholder="Address" class="form-control"/>
+              </div>
+              <div class="input-group input-group-sm">
+                  <input #phone="ngModel" [(ngModel)]="customerinfo.Phone" name="phone" id="phone" type="text" placeholder="Contact Number" class="form-control"/>
+                </div>
+          </nb-card-body>
+        </nb-card>
+  </div>
+</div>
