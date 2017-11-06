@@ -1,3 +1,4 @@
+import { DetailService } from '../../../../../@core/data/services/sales/order/detail.service';
 import { SmartTableService } from './../../../../../@core/data/smart-table.service';
 import { Component, OnInit } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
@@ -16,28 +17,32 @@ export class OrderDetailComponent implements OnInit {
   settings = {
     actions: false,
     columns: {
-      id: {
-        title: 'ID',
+      ProductTitle: {
+        title: 'Product',
+        type: 'string',
+      },
+      UnitPrice: {
+        title: 'Unit Price',
         type: 'number',
       },
-      firstName: {
-        title: 'First Name',
+      UOM: {
+        title: 'UOM',
         type: 'string',
       },
-      lastName: {
-        title: 'Last Name',
+      Article: {
+        title: 'Article',
         type: 'string',
       },
-      username: {
-        title: 'Username',
-        type: 'string',
+      Quantity: {
+        title: 'QTY',
+        type: 'number',
       },
-      email: {
-        title: 'E-mail',
-        type: 'string',
+      Discount: {
+        title: 'Discount',
+        type: 'number',
       },
-      age: {
-        title: 'Age',
+      TotalAmount: {
+        title: 'Sub Amount',
         type: 'number',
       },
     },
@@ -45,10 +50,13 @@ export class OrderDetailComponent implements OnInit {
 
   source: LocalDataSource = new LocalDataSource();
 
-  constructor(private service: SmartTableService) {
-    const data = this.service.getData();
-    this.source.load(data);
+  constructor(private service: SmartTableService,
+              private sodetailservice: DetailService) {
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.sodetailservice.getAll().subscribe(i => {
+      this.source.load(i);
+    });
+  }
 }
