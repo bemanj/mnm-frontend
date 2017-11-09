@@ -40,14 +40,14 @@
   <tr>
     <td  colspan="6">
               <table  style="height:650px; width:850px;" >
-                  <tr>
+                  <tr class="fixheight">
                       <td style="width:90px;" class="bordered txtcenter"><b>QTY</b></td>
           <td style="width:90px;" class="bordered txtcenter"><b>UNIT</b></td>
                       <td style="width:465px;" class="bordered txtcenter"><b>ARTICLES</b></td>
           <td style="width:95px;" class="bordered txtcenter"><b>UNIT PRICE</b></td>
           <td style="width:110px;" class="bordered txtcenter"><b>AMOUNT</b></td> 
                   </tr>
-                  <tr *ngFor="let o of order">
+                  <tr *ngFor="let o of order" class="fixheight">
                       <td class="txtcenter">{{ o.Quantity }}</td>
                       <td class="txtcenter">{{ o.UOM }}</td>
                       <td class="txtcenter">{{ o.ProductTitle }} {{ o.Article }}</td>
@@ -57,19 +57,19 @@
                   <tr>
           <td colspan="5" class="txtcenter"><p>*** *** *** *** *** ***      Page( 1 of 1 )      *** *** *** *** *** ***</p></td>
         </tr>
-        <tr>
-                      <td colspan="3"></td>
-          <td class="txtright"><b>Tax</b></td>
+        <tr class="fixheight">
+                      <td colspan="2"></td>
+          <td colspan="2" class="txtright"><b>Total Sales(VAT Inclusive) :</b></td>
+                      <td class="txtright bottomborder"><b>P {{ orderHeader.TotalDue |  number:'1.2' }}</b></td>
+                  </tr>
+                  <tr class="fixheight">
+          <td colspan="2"></td>
+                      <td colspan="2" class="txtright"><b>Add: Vat :</b></td>
                       <td class="txtright bottomborder"><b>P {{ orderHeader.TaxAmt |  number:'1.2' }}</b></td>
                   </tr>
-                  <tr>
-          <td colspan="3"></td>
-                      <td class="txtright"><b>Freight</b></td>
-                      <td class="txtright bottomborder"><b>P {{ orderHeader.Freight |  number:'1.2' }}</b></td>
-                  </tr>
-        <tr>
-          <td colspan="3"></td>
-          <td class="bordered txtright"><b>Total</b></td>
+        <tr class="fixheight">
+          <!-- <td colspan="2"></td> -->
+          <td colspan="4" class="bordered txtright"><b>TOTAL AMOUNT DUE :</b></td>
                       <td class="bordered txtright"><b>P {{ orderHeader.TotalDue |  number:'1.2' }}</b></td>
                   </tr>
               </table>

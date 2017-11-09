@@ -86,6 +86,10 @@ export class PrintComponent implements OnInit {
           .txtright {
             text-align: right;
           }
+          .fixheight {
+            line-height: 20px;
+            height: 20px;
+          }
         </style>
     </head>
 

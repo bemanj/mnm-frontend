@@ -47,6 +47,11 @@ export class OrderFormComponent implements OnInit, OnDestroy {
     // console.log('soid ' + this.salesorderid);
   }
 
+  backtoSO() {
+    // this.router.navigate(['/sales-order', id]);
+    history.back()
+  }
+
   // on customer change
   onselectedcustomer(data) {
     // console.log(data);

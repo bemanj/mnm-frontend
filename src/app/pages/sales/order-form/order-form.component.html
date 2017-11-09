@@ -1,7 +1,10 @@
 <div class="row">
     <div class="col-md-12">
       <nb-card class="inline-form-card">
-        <nb-card-header>Sales Order Number: {{ salesorderid }}</nb-card-header>
+        <nb-card-header>
+          Sales Order Number: {{ salesorderid }}
+          <button (click)="backtoSO()" id="backtoSO" class="btn btn-primary">back</button> 
+      </nb-card-header>
       </nb-card>
     </div>
   </div>
