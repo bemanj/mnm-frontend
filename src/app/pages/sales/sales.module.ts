@@ -7,6 +7,8 @@ import { ThemeModule } from '../../@theme/theme.module';
 import { CustomerService } from './../../@core/data/services/customer/customer.service';
 import { SmartTableService } from './../../@core/data/smart-table.service';
 import { routedComponents, SalesRoutingModule } from './sales-routing.module';
+import { SelectProductV2Component } from './order-form/selection/select-product-v2/select-product-v2.component';
+import { OrderDetailV2Component } from './order-form/selection/order-detail-v2/order-detail-v2.component';
 
 @NgModule({
   imports: [
@@ -17,6 +19,8 @@ import { routedComponents, SalesRoutingModule } from './sales-routing.module';
   ],
   declarations: [
     ...routedComponents,
+    SelectProductV2Component,
+    OrderDetailV2Component,
   ],
   providers: [
     SmartTableService,

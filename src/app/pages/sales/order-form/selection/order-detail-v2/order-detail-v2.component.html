@@ -1,0 +1,79 @@
+<!-- <p>
+  <input 
+    #query
+    (keyup)="filter(query.value)"
+    type="text" class="form-control" placeholder="Search...">
+</p> {{masterName}} -->
+<!-- <p>
+  <label>SO Number: {{ soNumber }}
+  </label>
+  <label>Master: {{masterName}}
+    </label>
+    <label>Sales Order ID: {{salesorder.SalesOrderID}}
+      </label>
+</p> -->
+<div *ngIf="message" class="alert alert-success">{{message.text}}</div>
+
+<data-table
+[items]="items"
+[itemCount]="itemCount"
+(reload)="reloadItems($event)">
+
+<data-table-column
+[property]="'ProductTitle'"  
+[header]="'Product'"
+[sortable]="true"
+[resizable]="true"
+>
+</data-table-column>
+
+<data-table-column
+[property]="'UnitPrice'"  
+[header]="'Price'"
+[sortable]="true"
+[resizable]="true"
+>
+<ng-template #dataTableCell let-item="item">
+  P {{ item.UnitPrice | number:'1.2' }}
+</ng-template>
+</data-table-column>
+
+<data-table-column
+[property]="'Quantity'"  
+[header]="'Order Quantity'"
+[sortable]="true"
+[resizable]="true"
+>
+</data-table-column>
+
+<data-table-column
+[property]="'TotalAmount'"  
+[header]="'Amount'"
+[sortable]="true"
+[resizable]="true"
+>
+<ng-template #dataTableCell let-item="item">
+  P {{ item.TotalAmount | number:'1.2' }}
+</ng-template>
+</data-table-column>
+
+<data-table-column
+[property]="'Discount'" 
+[header]="'Discount'" 
+>
+  <ng-template #dataTableCell let-item="item">
+    <!-- <input  [(ngModel)]="item.OrderQuantity" name="orderquantity" id="orderquantity" type="number" class="form-control" placeholder="0" required [min]="0"> -->
+    <input #discount="ngModel" [(ngModel)]="item.Discount" name="discount" id="discount" type="number" class="form-control" placeholder="0" required [min]="0">
+  </ng-template>
+</data-table-column>
+
+  <data-table-column
+  [property]="'$id'"  
+>
+  <ng-template #dataTableCell let-item="item">
+    <button (click)='save(item)'>Update</button>
+    <button (click)='remove(item)'>Remove</button>
+  </ng-template>
+</data-table-column>
+
+</data-table>

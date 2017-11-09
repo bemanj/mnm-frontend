@@ -16,10 +16,34 @@ export class DetailService {
     this._url = configService.getApiURI();
   }
 
+  create(body) {
+    console.log(body);
+    return this.http.post(this._url + 'SalesOrderDetails', body)
+    .do(this.logResponse)
+    .map((res: Response) => res.json());
+  }
+
   getAll() {
     return this.http.get(this._url + 'view_SalesOrderDetails')
      .do(this.logResponse)
      .map((res: Response) => res.json());
+  }
+
+  get(id) {
+    return this.http.get(this._url + 'SalesOrderDetails/' + id)
+    .do(this.logResponse)
+    .map((res: Response) => res.json());
+  }
+
+  update(id, data) {
+    this.http.put(this._url + 'SalesOrderDetails/' + id, data)
+    .subscribe((res: Response) => res.json());
+  }
+
+  delete(inventoryId) {
+    return this.http.delete(this._url + 'SalesOrderDetails/' + inventoryId)
+    .do(this.logResponse)
+    .map((res: Response) => res.json());
   }
 
   private logResponse(res: Response) {

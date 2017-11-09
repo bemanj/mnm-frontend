@@ -19,7 +19,7 @@
           </div>
           <div class="form-group">
             <label>List of customer</label>
-            <select #customer="ngModel" [(ngModel)]="soHeader.Customer" (change)="onselectedcustomer(customer.value)" name="customer" id="customer" class="form-control" >
+            <select #customer="ngModel" [(ngModel)]="soHeader.Customer" (change)="onselectedcustomer(customer.value)" name="customer" id="customer" multiple class="form-control" >
                 <option value=""></option>
                 <option *ngFor="let c of customer$" [value]="c.CustomerID">
                   {{ c.CompanyName }}
@@ -62,8 +62,28 @@
       <nb-card>
         <nb-card-header>Product selection</nb-card-header>
         <nb-card-body>
-            <ngx-select-product></ngx-select-product>
+            <!-- <ngx-select-product></ngx-select-product> -->
+            <ngx-select-product-v2></ngx-select-product-v2>
+        </nb-card-body>
+      </nb-card>
+      <nb-card>
+        <nb-card-header>Orders</nb-card-header>
+        <nb-card-body>
+          <ngx-order-detail-v2></ngx-order-detail-v2>
         </nb-card-body>
       </nb-card>
     </div>
 </div>
+<div class="row">
+  <div class="col-md-12">
+  <nb-card>
+    <nb-card-body>
+      <button class="btn btn-primary btn-tn">Complete & Print Order</button>    
+      <span>-</span>
+      <button (click)="print(salesorderid)" class="btn btn-primary btn-tn">Print Preview</button>    
+    </nb-card-body>
+  </nb-card>
+  </div>
+</div>
+
+  

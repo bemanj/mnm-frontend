@@ -1,0 +1,134 @@
+<!-- <p>
+  <input 
+    #query
+    (keyup)="filter(query.value)"
+    type="text" class="form-control" placeholder="Search...">
+</p> {{masterName}} -->
+<p>
+    <label>SO Number: {{ soid }}
+    </label>
+    <label>Master: {{masterName}}
+      </label>
+      <label>Sales Order ID: {{ soid }}
+        </label>
+  </p>
+  <!-- <button (click)="sendMessage()">Send Message</button>
+  <button (click)="clearMessage()">Clear Message</button> -->
+  <data-table
+    [items]="items"
+    [itemCount]="itemCount"
+    (reload)="reloadItems($event)">
+  
+    <data-table-column
+    [property]="'ProductId'"  
+    [header]="'Product ID'"
+    [sortable]="true"
+    [resizable]="true"
+    [visible]="false"
+    >
+    </data-table-column>
+
+    <data-table-column
+    [property]="'CategoryID'"  
+    [header]="'Category ID'"
+    [sortable]="true"
+    [resizable]="true"
+    [visible]="false"
+    >
+    </data-table-column>
+
+    <data-table-column
+    [property]="'Article'"  
+    [header]="'Article'"
+    [sortable]="true"
+    [resizable]="true"
+    [visible]="true"
+    >
+    </data-table-column>
+
+    <data-table-column
+    [property]="'ProductTitle'"  
+    [header]="'Product'"
+    [sortable]="true"
+    [resizable]="true"
+    >
+    </data-table-column>
+  
+    <data-table-column
+    [property]="'CompanyName'"  
+    [header]="'Supplier'"
+    [sortable]="true"
+    [resizable]="true"
+    >
+    </data-table-column>
+  
+    <data-table-column
+    [property]="'Brand'"  
+    [header]="'Brand'"
+    [sortable]="true"
+    [resizable]="true"
+    >
+    </data-table-column>
+  
+    <data-table-column
+    [property]="'Quantity'"  
+    [header]="'Stock Quantity'"
+    [sortable]="true"
+    [resizable]="true"
+    >
+    </data-table-column>
+    
+    <data-table-column
+    [property]="'UOM'"  
+    [header]="'UOM'"
+    [sortable]="false"
+    [resizable]="true"
+    >
+    </data-table-column>
+
+    <data-table-column
+    [property]="'Price'"  
+    [header]="'Price'"
+    [sortable]="true"
+    [resizable]="true"
+    >
+    <ng-template #dataTableCell let-item="item">
+      P {{ item.Price | number:'1.2' }}
+    </ng-template>
+    </data-table-column>
+  
+  <data-table-column
+  [property]="'AcquisitionPrice'"  
+  [header]="'Acquisition Price'"
+  [sortable]="true"
+  [resizable]="true"
+  >
+  <ng-template #dataTableCell let-item="item">
+    P {{ item.AcquisitionPrice | number:'1.2' }}
+  </ng-template>
+  </data-table-column>
+  
+  <data-table-column
+  [property]="'OrderQuantity'" 
+  [header]="'Order Quantity'" 
+  >
+    <ng-template #dataTableCell let-item="item">
+      <!-- <input  [(ngModel)]="item.OrderQuantity" name="orderquantity" id="orderquantity" type="number" class="form-control" placeholder="0" required [min]="0"> -->
+      <input #orderquantity="ngModel" [(ngModel)]="item.OrderQuantity" name="orderquantity" id="orderquantity" type="number" class="form-control" placeholder="0" required [min]="0">
+    </ng-template>
+  </data-table-column>
+
+  <data-table-column
+    [property]="'$id'"  
+    [header]="'Add to order list'" 
+  >
+    <ng-template #dataTableCell let-item="item">
+      <button (click)='save(item)'>Add</button>
+    </ng-template>
+  </data-table-column>
+    
+  
+  </data-table>
+
+
+  

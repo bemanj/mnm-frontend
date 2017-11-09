@@ -1,3 +1,119 @@
-<p>
-  print works!
-</p>
+<nb-card>
+    <nb-card-header>
+      <div style="height:80px">
+        <button (click)="backtoSO(orderHeader.SalesOrderID)" id="backtoSO" class="btn btn-primary">Back to SO</button> 
+        <button class="print"  (click)="print('printSectionId')" class="btn btn-primary">Print</button>
+      </div>
+</nb-card-header>
+
+<nb-card-body>
+<div class="row" print-section id="printSectionId">
+  <table style="width:850px;">
+      <tr>
+          <td style="vertical-align:top">
+      <p>
+                   Date:{{ orderHeader.OrderDate | date }}&nbsp;
+                  <br>Terms:30 Days&nbsp;
+                  <br>P.O. No.&nbsp;
+        <br>
+        <br><b>SALES ORDER:</b> <b> {{ orderHeader.SalesOrderID}}</b>
+        <br>
+        <br><b>Customer: </b> <b>{{ orderHeader.Customer }}</b>
+        <br>Business Style: <b>Distribution</b>
+        <br>TIN: <b>000-000-000-000</b>
+        <br>Contact No.: <b>(63)0912-345-6789</b>
+        <br>Sales Rep: <b>Juan Dela Cruz</b>
+      </p>
+    </td>
+          <td colspan="2" style="width:400px; vertical-align:top" class="txtright">
+              <p><b>MIDAS MEAT AND COMMODITIES CORP.</b>
+                  <br>20 Capricorn St., cor. Libra St.,&nbsp;
+                  <br>Carmel 5 Tandang Sora, Quezon City&nbsp;
+                  <br>Tel (632)461-7651 Globe (63)0917-501-5530&nbsp;
+          <br>Sun (63)0922-829-2683 Smart (63)0906-839-9202&nbsp;
+                  <br>midasmeatandcommodities@yahoo.com&nbsp;
+        <br>VAT Reg. TIN:008-107-922-000&nbsp;
+                  <br>
+              </p>
+     </td>
+      </tr>
+  <tr>
+    <td  colspan="6">
+              <table  style="height:650px; width:850px;" >
+                  <tr>
+                      <td style="width:90px;" class="bordered txtcenter"><b>QTY</b></td>
+          <td style="width:90px;" class="bordered txtcenter"><b>UNIT</b></td>
+                      <td style="width:465px;" class="bordered txtcenter"><b>ARTICLES</b></td>
+          <td style="width:95px;" class="bordered txtcenter"><b>UNIT PRICE</b></td>
+          <td style="width:110px;" class="bordered txtcenter"><b>AMOUNT</b></td> 
+                  </tr>
+                  <tr *ngFor="let o of order">
+                      <td class="txtcenter">{{ o.Quantity }}</td>
+                      <td class="txtcenter">{{ o.UOM }}</td>
+                      <td class="txtcenter">{{ o.ProductTitle }} {{ o.Article }}</td>
+                      <td class="txtright">P {{ o.UnitPrice |  number:'1.2' }}</td>
+                      <td class="txtright">P {{ o.TotalAmount |  number:'1.2' }}</td>
+                  </tr>
+                  <tr>
+          <td colspan="5" class="txtcenter"><p>*** *** *** *** *** ***      Page( 1 of 1 )      *** *** *** *** *** ***</p></td>
+        </tr>
+        <tr>
+                      <td colspan="3"></td>
+          <td class="txtright"><b>Tax</b></td>
+                      <td class="txtright bottomborder"><b>P {{ orderHeader.TaxAmt |  number:'1.2' }}</b></td>
+                  </tr>
+                  <tr>
+          <td colspan="3"></td>
+                      <td class="txtright"><b>Freight</b></td>
+                      <td class="txtright bottomborder"><b>P {{ orderHeader.Freight |  number:'1.2' }}</b></td>
+                  </tr>
+        <tr>
+          <td colspan="3"></td>
+          <td class="bordered txtright"><b>Total</b></td>
+                      <td class="bordered txtright"><b>P {{ orderHeader.TotalDue |  number:'1.2' }}</b></td>
+                  </tr>
+              </table>
+          </td> 
+      </tr>
+  <tr>
+          <td style="height:20px"></td>
+          <td colspan="2"></td>
+  </tr>
+  <tr>
+    <td style="width:283px" class="txtcenter">Prepared by:</td>
+    <td style="width:283px" class="txtcenter">Assembled by:</td>
+    <td style="width:283px" class="txtcenter">Checked by:</td>
+  </tr>
+  <tr>
+          <td style="height:50px"></td>
+          <td colspan="2"></td>
+  </tr>
+  <tr>
+    <td class="topborder txtcenter">(Printed Name & Signature):</td>
+    <td class="topborder txtcenter">(Printed Name & Signature):</td>
+    <td class="topborder txtcenter">(Printed Name & Signature):</td>
+  </tr>
+  <tr>
+          <td style="height:30px"></td>
+          <td colspan="2"></td>
+  </tr>
+  <tr>
+    <td colspan="2"></td>
+    <td class="txtcenter"><b>Received in Good Order & Condition by</b>
+  </tr>
+  <tr>
+          <td style="height:40px"></td>
+          <td colspan="2"></td>
+  </tr>
+  <tr>
+  </tr>
+    <td colspan="2"></td>
+    <td class="topborder txtcenter">(Printed Name & Signature) / Date</td>
+  <tr>
+  </tr>
+  <tr>
+  </tr>
+  </table>
+</div>
+</nb-card-body>
+</nb-card>
