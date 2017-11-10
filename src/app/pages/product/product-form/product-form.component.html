@@ -1,3 +1,73 @@
-<p>
-  product-form works!
-</p>
+<nb-card>
+  <nb-card-body>
+    <div class="row">
+        <div class="col-md-8">
+          <form #f="ngForm" (ngSubmit)="save(f.value)">
+              <div class="form-group">
+                <label for="ProductTitle">Product</label>
+                <input #ProductTitle="ngModel" [(ngModel)]="p.ProductTitle" name="ProductTitle" id="ProductTitle" type="text" class="form-control" required>
+                <div class="alert alert-danger" *ngIf="ProductTitle.touched && ProductTitle.invalid">
+                  Product title is required.
+                </div>
+              </div>        
+              
+              <div class="row">
+                  <div class="col-6">
+                      <div class="form-group">
+                          <label for="ReorderLevel">Reorder Level</label>
+                          <div class="input-group">
+                            <input #ReorderLevel="ngModel" [(ngModel)]="p.ReorderLevel" name="ReorderLevel" id="ReorderLevel" type="number" class="form-control" required [min]="0" required>
+                          </div>
+                          <div class="alert alert-danger" *ngIf="ReorderLevel.touched && ReorderLevel.invalid">
+                            <div *ngIf="ReorderLevel.errors.required">Reorder level is required.</div>
+                              <div *ngIf="ReorderLevel.errors.min">Reorder level should be 0 or higher.</div>
+                          </div>
+                        </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="form-group">
+                      <div class="form-group">
+                          <label for="Discontinued">Discontinued</label>
+                          <select #Discontinued="ngModel" [(ngModel)]="p.Discontinued" name="Discontinued" id="Discontinued" class="form-control" required>
+                            <option value=""></option>
+                            <option value="1">Yes</option>
+                            <option value="0">No</option>
+                          </select>
+                          <div class="alert alert-danger" *ngIf="Discontinued.touched && Discontinued.invalid">
+                            Discontinued is required.
+                          </div>
+                      </div>        
+                    </div>
+                  </div>
+                </div>
+                
+              
+              <div class="form-group">
+                <label for="category">Category</label>
+                <select #category="ngModel" [(ngModel)]="p.CategoryID" name="category" id="category" class="form-control" required>
+                  <option value=""></option>
+                  <option *ngFor="let c of categories$" [value]="c.CategoryID">
+                    {{ c.CategoryName }}
+                  </option>
+                </select>
+                 <div class="alert alert-danger" *ngIf="category.touched && category.invalid">
+                  Category is required.
+                </div> 
+              </div>   
+      
+              <!-- <div class="form-group">
+                <label for="imageUrl">Image URL</label>
+                <input #imageUrl="ngModel" [(ngModel)]="p.imageUrl" name="imageUrl" id="imageUrl" type="text" class="form-control" >
+                <div class="alert alert-danger" *ngIf="imageUrl.touched && imageUrl.invalid">
+                  <div *ngIf="imageUrl.errors.required">Image URL is required.</div>
+                  <div *ngIf="imageUrl.errors.url">Please enter a valid URL.</div>
+                </div> 
+              </div>         -->
+              <button [disabled]="!f.valid" class="btn btn-primary">Save</button>
+              <span>-</span>
+            </form>    
+            <button (click)="back()" id="back" class="btn btn-primary">Back</button> 
+        </div>
+      </div>
+  </nb-card-body>
+</nb-card>

@@ -44,8 +44,13 @@ export class ProductListComponent implements OnInit {
   
     source: LocalDataSource = new LocalDataSource();
   
-  constructor(private productservice: ProductService) { }
+  constructor(private productservice: ProductService,
+              private router: Router
+            ) { }
 
+  save() {
+    this.router.navigate(['/pages/product/form/']);
+  }
   ngOnInit() {
     this.productservice.getAll()
     .subscribe(s => {
