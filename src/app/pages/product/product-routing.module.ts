@@ -13,6 +13,9 @@ const routes: Routes = [{
     path: 'category',
     component: CategoryComponent,
   }, {
+    path: 'form/:id',
+    component: ProductFormComponent,
+  }, {
     path: 'form',
     component: ProductFormComponent,
   }, {

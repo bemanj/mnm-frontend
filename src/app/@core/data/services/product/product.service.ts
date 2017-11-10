@@ -16,14 +16,37 @@ export class ProductService {
     this._url = configService.getApiURI();
   }
 
+  create(body) {
+    console.log(body);
+    return this.http.post(this._url + 'ProductOnes', body)
+    .do(this.logResponse)
+    .map((res: Response) => res.json());
+  }
+
   getAll() {
     return this.http.get(this._url + 'ViewProduct')
      .do(this.logResponse)
      .map((res: Response) => res.json());
   }
 
+  getById(pid) {
+    return this.http.get(this._url + 'ProductOnes/' + pid)
+    .do(this.logResponse)
+    .map((res: Response) => res.json());
+  }
+
   private logResponse(res: Response) {
       console.log(res);
   }
 
+  delete(pid) {
+    this.http.delete(this._url + 'ProductOnes/' + pid)
+    .subscribe((res: Response) => res.json());
+  }
+
+  update(pid, pbody) {
+    this.http.put(this._url + 'ProductOnes/' + pid, pbody)
+    .subscribe((res: Response) => res.json());
+  }
+  
 }

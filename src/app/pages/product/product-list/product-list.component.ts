@@ -44,7 +44,21 @@ export class ProductListComponent implements OnInit {
   
     source: LocalDataSource = new LocalDataSource();
   
-  constructor(private productservice: ProductService) { }
+  constructor(private productservice: ProductService,
+              private router: Router
+            ) { }
+
+  add() {
+    this.router.navigate(['/pages/product/form/']);
+  }
+
+  onUserRowSelect(event): void {
+    // Return Product ID
+    console.log(event.data.ProductId);
+    // debugger
+    // Open to Product Form
+    this.router.navigate(['/pages/product/form', event.data.ProductId]);
+  }
 
   ngOnInit() {
     this.productservice.getAll()

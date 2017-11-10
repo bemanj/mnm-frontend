@@ -9,6 +9,7 @@ import { CustomerService } from './services/customer/customer.service';
 import { GlobalService } from './services/global/global.service';
 import { InventoryService } from './services/inventory/inventory.service';
 import { PrintService } from './services/print/print.service';
+import { ProductCategoryService } from './services/product/category/product-category.service';
 import { DetailService } from './services/sales/order/detail.service';
 import { HeaderService } from './services/sales/order/header.service';
 import { SalesReportService } from './services/sales/sales-report.service';
@@ -23,6 +24,7 @@ const SERVICES = [
   SmartTableService,
   PlayerService,
   ConfigService,
+  ProductCategoryService,
   GlobalService,
   CustomerService,
   SalesReportService,

@@ -39,39 +39,39 @@
       </tr>
   <tr>
     <td  colspan="6">
-              <table  style="height:650px; width:850px;" >
+              <table  style="height:710px; width:850px;" >
                   <tr class="fixheight">
-                      <td style="width:90px;" class="bordered txtcenter"><b>QTY</b></td>
-          <td style="width:90px;" class="bordered txtcenter"><b>UNIT</b></td>
-                      <td style="width:465px;" class="bordered txtcenter"><b>ARTICLES</b></td>
-          <td style="width:95px;" class="bordered txtcenter"><b>UNIT PRICE</b></td>
-          <td style="width:110px;" class="bordered txtcenter"><b>AMOUNT</b></td> 
+                    <td style="width:90px;" class="bordered txtcenter"><b>QTY</b></td>
+                    <td style="width:90px;" class="bordered txtcenter"><b>UNIT</b></td>
+                    <td style="width:465px;" class="bordered txtcenter"><b>ARTICLES</b></td>
+                    <td style="width:95px;" class="bordered txtcenter"><b>UNIT PRICE</b></td>
+                    <td style="width:110px;" class="bordered txtcenter"><b>AMOUNT</b></td> 
                   </tr>
-                  <tr *ngFor="let o of order" class="fixheight">
-                      <td class="txtcenter">{{ o.Quantity }}</td>
-                      <td class="txtcenter">{{ o.UOM }}</td>
-                      <td class="txtcenter">{{ o.ProductTitle }} {{ o.Article }}</td>
-                      <td class="txtright">P {{ o.UnitPrice |  number:'1.2' }}</td>
-                      <td class="txtright">P {{ o.TotalAmount |  number:'1.2' }}</td>
-                  </tr>
-                  <tr>
-          <td colspan="5" class="txtcenter"><p>*** *** *** *** *** ***      Page( 1 of 1 )      *** *** *** *** *** ***</p></td>
-        </tr>
-        <tr class="fixheight">
-                      <td colspan="2"></td>
-          <td colspan="2" class="txtright"><b>Total Sales(VAT Inclusive) :</b></td>
-                      <td class="txtright bottomborder"><b>P {{ orderHeader.TotalDue |  number:'1.2' }}</b></td>
-                  </tr>
-                  <tr class="fixheight">
-          <td colspan="2"></td>
-                      <td colspan="2" class="txtright"><b>Add: Vat :</b></td>
-                      <td class="txtright bottomborder"><b>P {{ orderHeader.TaxAmt |  number:'1.2' }}</b></td>
-                  </tr>
-        <tr class="fixheight">
-          <!-- <td colspan="2"></td> -->
-          <td colspan="4" class="bordered txtright"><b>TOTAL AMOUNT DUE :</b></td>
-                      <td class="bordered txtright"><b>P {{ orderHeader.TotalDue |  number:'1.2' }}</b></td>
-                  </tr>
+                <tr *ngFor="let o of order" class="fixheight">
+                    <td class="txtcenter">{{ o.Quantity }}</td>
+                    <td class="txtcenter">{{ o.UOM }}</td>
+                    <td class="txtcenter">{{ o.ProductTitle }} {{ o.Article }}</td>
+                    <td class="txtright">P {{ o.UnitPrice |  number:'1.2' }}</td>
+                    <td class="txtright">P {{ o.TotalAmount |  number:'1.2' }}</td>
+                </tr>
+                <tr class="fixheight">
+                    <td colspan="5" class="txtcenter"><p>*** *** *** *** *** ***      Page( 1 of 1 )      *** *** *** *** *** ***</p></td>
+                </tr>
+                <tr class="fixheight">
+                    <td colspan="2"></td>
+                    <td colspan="2" class="txtright"><b>Total Sales(VAT Inclusive) :</b></td>
+                    <td class="txtright bottomborder"><b>P {{ orderHeader.SubTotal |  number:'1.2' }}</b></td>
+                </tr>
+                <tr class="fixheight">
+                    <td colspan="2"></td>
+                    <td colspan="2" class="txtright"><b>Add: Vat :</b></td>
+                    <td class="txtright bottomborder"><b>P {{ orderHeader.TaxAmt |  number:'1.2' }}</b></td>
+                </tr>
+                <tr class="fixheight">
+                    <!-- <td colspan="2"></td> -->
+                    <td colspan="4" class="bordered txtright"><b>TOTAL AMOUNT DUE :</b></td>
+                    <td class="bordered txtright"><b>P {{ orderHeader.TotalDue |  number:'1.2' }}</b></td>
+                </tr>
               </table>
           </td> 
       </tr>
@@ -79,16 +79,16 @@
           <td style="height:20px"></td>
           <td colspan="2"></td>
   </tr>
-  <tr>
+  <tr class="fixheight">
     <td style="width:283px" class="txtcenter">Prepared by:</td>
     <td style="width:283px" class="txtcenter">Assembled by:</td>
     <td style="width:283px" class="txtcenter">Checked by:</td>
   </tr>
   <tr>
-          <td style="height:50px"></td>
+          <td style="height:60px"></td>
           <td colspan="2"></td>
   </tr>
-  <tr>
+  <tr class="fixheight">
     <td class="topborder txtcenter">(Printed Name & Signature):</td>
     <td class="topborder txtcenter">(Printed Name & Signature):</td>
     <td class="topborder txtcenter">(Printed Name & Signature):</td>
@@ -97,21 +97,19 @@
           <td style="height:30px"></td>
           <td colspan="2"></td>
   </tr>
-  <tr>
+  <tr class="fixheight">
     <td colspan="2"></td>
     <td class="txtcenter"><b>Received in Good Order & Condition by</b>
   </tr>
   <tr>
-          <td style="height:40px"></td>
+          <td style="height:60px"></td>
           <td colspan="2"></td>
   </tr>
   <tr>
   </tr>
+  <tr>
     <td colspan="2"></td>
-    <td class="topborder txtcenter">(Printed Name & Signature) / Date</td>
-  <tr>
-  </tr>
-  <tr>
+    <td class="topborder txtcenter fixheight">(Printed Name & Signature) / Date</td>
   </tr>
   </table>
 </div>
