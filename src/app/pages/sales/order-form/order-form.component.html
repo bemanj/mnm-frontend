@@ -1,9 +1,10 @@
+<form #f="ngForm" (ngSubmit)="updateSO(f.value)">
 <div class="row">
     <div class="col-md-12">
       <nb-card class="inline-form-card">
         <nb-card-header>
           Sales Order Number: {{ salesorderid }}
-          <button (click)="backtoSO()" id="backtoSO" class="btn btn-primary">back</button> 
+          <button (click)="backtoSO()" type="button" id="backtoSO" class="btn btn-primary">back</button> 
       </nb-card-header>
       </nb-card>
     </div>
@@ -14,7 +15,7 @@
     <nb-card>
       <nb-card-header>
         Select Customer
-        <button class="btn btn-primary btn-tn">Create New</button>
+        <button type="button" class="btn btn-primary btn-tn">Create Customer</button>
       </nb-card-header>
         <nb-card-body>
           <div class="input-group">
@@ -36,7 +37,7 @@
       <nb-card>
           <nb-card-header>
             Customer Info
-            <button class="btn btn-primary btn-tn">Save </button>
+            <button type="button" class="btn btn-primary btn-tn">Save </button>
           </nb-card-header>
           <nb-card-body>
             <div class="input-group">
@@ -62,6 +63,31 @@
 </div>
 <div class="row">
     <div class="col-md-12">
+        <nb-card>
+            <nb-card-header>
+              Sales Order Info
+              <button [disabled]="!f.valid" type="submit" id="updateso" class="btn btn-primary">update sales order</button>
+            </nb-card-header>
+            <nb-card-body>
+              <div class="col-sm-12 input-group">
+                <textarea #comment="ngModel" [(ngModel)]="item.Comment" rows="5" name="comment" id="comment" type="text" placeholder="Comment" class="form-control"></textarea>
+              </div>
+              <div class="col-sm-6 input-group">
+                  <select #Flag="ngModel" [(ngModel)]="item.OnlineOrderFlag" name="Flag" id="Flag" aria-placeholder="Order flag" class="form-control" required>
+                    <option value=""></option>
+                    <option>Call</option>
+                    <option>Walk In</option>
+                  </select>
+                  <div class="alert alert-danger" *ngIf="Flag.touched && Flag.invalid">
+                    Order Flag is required.
+                  </div>
+              </div>        
+            </nb-card-body>
+          </nb-card>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
       <nb-card>
         <nb-card-header>Product selection</nb-card-header>
         <nb-card-body>
@@ -81,12 +107,11 @@
   <div class="col-md-12">
   <nb-card>
     <nb-card-body>
-      <button class="btn btn-primary btn-tn">Complete & Print Order</button>    
+      <button type="button" class="btn btn-primary btn-tn">Complete & Print Order</button>    
       <span>-</span>
-      <button (click)="print(salesorderid)" class="btn btn-primary btn-tn">Print Preview</button>    
+      <button type="button" (click)="print(salesorderid)" class="btn btn-primary btn-tn">Print Preview</button>    
     </nb-card-body>
   </nb-card>
   </div>
 </div>
-
-  
+</form>

@@ -18,6 +18,7 @@ export class OrderFormComponent implements OnInit, OnDestroy {
   salesorderid;
   customer$: CustomerList[];
   customerinfo = {};
+  item = {};
   address = {};
   soHeader = {};
   message: any;
@@ -51,6 +52,31 @@ export class OrderFormComponent implements OnInit, OnDestroy {
     // this.router.navigate(['/sales-order', id]);
     history.back()
   }
+
+  updateSO(item) {
+     // alert('test save function');
+     debugger
+     alert('Sales order will be updated');
+     
+           console.log('coy ' + item.Company);
+     
+           const date = new Date();
+     
+           const sodata = {
+             SalesOrderID: this.salesorderid,
+             Customer: item.Customer,
+            //  TaxAmt: item.TaxAmt, // orderHeader.soTaxAmt,
+            //  Freight: item.Freight, // orderHeader.soFreight,
+             Comment: item.comment, // orderHeader.soComment,
+            //  OrderDate: date, // create alternative that not includes update of order date column
+             ModifiedDate: date,
+             OnlineOrderFlag: item.Flag
+           };
+           console.log(sodata);
+           this.salesreportservice.update(this.salesorderid, sodata)
+           .subscribe();
+             // console.log('update so' + this.orderHeader.SalesOrderID)
+         }
 
   // on customer change
   onselectedcustomer(data) {
