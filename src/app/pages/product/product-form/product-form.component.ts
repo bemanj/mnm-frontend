@@ -20,19 +20,21 @@ export class ProductFormComponent implements OnInit {
 
   constructor(private productservice: ProductService,
               private route: ActivatedRoute,
-              private productcategoryservice: ProductCategoryService,
-  ) {
+              private productcategoryservice: ProductCategoryService) {
+    
     this.id = this.route.snapshot.paramMap.get('id');
+    // debugger
     if (this.id) {
       this.productservice.getById(this.id).subscribe(p => {
       this.p  = p;
+      console.log(this.p);
       });
     }
   }
 
   save(p) {
     // alert('test save function');
-      alert('Sales order will be save');
+      alert('Product will be save');
 
       // console.log('coy ' + p.Company);
 
@@ -42,7 +44,7 @@ export class ProductFormComponent implements OnInit {
         ReorderLevel: p.ReorderLevel,
         Discontinued: p.Discontinued
       };
-
+// debugger
       const updatedproduct = {
         ProductId: this.id,
         CategoryID: p.category,
@@ -57,6 +59,8 @@ export class ProductFormComponent implements OnInit {
       } else {
         this.productservice.create(newproduct).subscribe();
       }
+      // return to previous page
+      this.back();
         // create toaster after new product is created
         // console.log('update so' + this.orderHeader.SalesOrderID)
     }

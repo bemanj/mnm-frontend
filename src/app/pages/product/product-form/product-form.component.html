@@ -30,8 +30,8 @@
                           <label for="Discontinued">Discontinued</label>
                           <select #Discontinued="ngModel" [(ngModel)]="p.Discontinued" name="Discontinued" id="Discontinued" class="form-control" required>
                             <option value=""></option>
-                            <option value="1">Yes</option>
-                            <option value="0">No</option>
+                            <option value="true">Yes</option>
+                            <option value="false">No</option>
                           </select>
                           <div class="alert alert-danger" *ngIf="Discontinued.touched && Discontinued.invalid">
                             Discontinued is required.
