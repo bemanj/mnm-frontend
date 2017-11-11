@@ -55,7 +55,7 @@ export class OrderFormComponent implements OnInit, OnDestroy {
 
   updateSO(item) {
      // alert('test save function');
-     debugger
+    //  debugger
      alert('Sales order will be updated');
      
            console.log('coy ' + item.Company);

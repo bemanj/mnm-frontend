@@ -66,14 +66,14 @@ export class PrintComponent implements OnInit {
         .orders {
           table-layout: fixed;
           width: 100%;
-          // height: 100%;
-          // white-space: nowrap;
+          height: 100%;
+          white-space: nowrap;
         }
-        // .orders td {
-        //   white-space: nowrap;
-        //   overflow: hidden;
-        //   text-overflow: ellipsis;
-        // }
+         .orders td {
+           white-space: nowrap;
+           overflow: hidden;
+           text-overflow: ellipsis;
+         }
         .val td {
             border: 1px solid black;
             border-collapse: collapse;
@@ -82,19 +82,19 @@ export class PrintComponent implements OnInit {
           border: 1px solid black;
                 border-collapse: collapse;
         }
-        .closerightborder{
+        .closerightborder {
           border-top: 1px solid black;
           border-right: 1px solid black;
           border-bottom: 1px solid black;
         }
-        .topbottomborder{
+        .topbottomborder {
           border-top: 1px solid black;
           border-bottom: 1px solid black;
         }
-        .bottomborder{
+        .bottomborder {
           border-bottom: 1px solid black;
         }
-        .topborder{
+        .topborder {
           border-top : 1px solid black;
         }
         .txtcenter {

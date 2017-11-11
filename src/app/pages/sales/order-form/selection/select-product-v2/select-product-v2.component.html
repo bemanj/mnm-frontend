@@ -123,7 +123,7 @@
     [header]="'Add to order list'" 
   >
     <ng-template #dataTableCell let-item="item">
-      <button (click)='save(item)'>Add</button>
+      <button type="button" (click)='save(item)'>Add</button>
     </ng-template>
   </data-table-column>
     
