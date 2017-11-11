@@ -55,7 +55,7 @@ export class OrderFormComponent implements OnInit, OnDestroy {
 
   updateSO(item) {
      // alert('test save function');
-    //  debugger
+     debugger
      alert('Sales order will be updated');
      
            console.log('coy ' + item.Company);
@@ -64,7 +64,7 @@ export class OrderFormComponent implements OnInit, OnDestroy {
      
            const sodata = {
              SalesOrderID: this.salesorderid,
-             Customer: item.Customer,
+             Customer: item.customer,
             //  TaxAmt: item.TaxAmt, // orderHeader.soTaxAmt,
             //  Freight: item.Freight, // orderHeader.soFreight,
              Comment: item.comment, // orderHeader.soComment,
