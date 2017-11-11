@@ -71,7 +71,7 @@ export class OrderDetailV2Component implements OnInit, OnDestroy, OnChanges {
       i => {
         this.orderdetails = i;
         this.initializeTable(i);
-        console.log(i)
+        // console.log(i)
       }
     )
   }

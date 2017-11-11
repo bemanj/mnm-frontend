@@ -15,7 +15,7 @@ import { InventoryList } from './../../../../../@core/models/inventory';
   styleUrls: ['./select-product-v2.component.scss']
 })
 export class SelectProductV2Component implements OnInit {
-  inventory: InventoryList;
+  inventory: InventoryList[] = [];
   subscription: Subscription;
   tableResource: DataTableResource<InventoryList>;
   items: InventoryList[] = [];
@@ -32,9 +32,7 @@ export class SelectProductV2Component implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private globalservice: GlobalService,
-    private sharedOrderService: SharedOrderService,) {
-
-  }
+    private sharedOrderService: SharedOrderService) {  }
 
   private initializeTable(inventoryList: InventoryList[]) {
     this.tableResource = new DataTableResource(inventoryList);
@@ -46,9 +44,9 @@ export class SelectProductV2Component implements OnInit {
 
   reloadItems(params) {
     if (!this.tableResource) return;
-
     this.tableResource.query(params)
       .then(items => this.items = items);    
+    this.update();
   }
 
   save(item) {
@@ -75,6 +73,7 @@ export class SelectProductV2Component implements OnInit {
         this.orderdetailService.create(postdata).subscribe(data => { 
           this.postData$ = data
           this.fetchData(this.soid);
+          this.update();
         });
     } else {
       alert('Invalid quantity :' + item.OrderQuantity);
@@ -93,19 +92,32 @@ export class SelectProductV2Component implements OnInit {
   getSelectedComponents() {
   } 
 
+  update() {
+    this.sharedOrderService.getInventory();
+  }
   // get new record from service
   fetchData(id) {
     this.sharedOrderService.getOrders(id);
   }
+  // fetch updated inventory records
+  fetchInventory() {
+    this.subscription = this.sharedOrderService.navInventory$
+    .subscribe(
+      i => {
+        this.inventory = i;
+        this.initializeTable(i);
+        console.log(i);
+     });
+     // return all records on initial load
+    //  this.subscription = this.inventoryList.getAll()
+    //  .subscribe(inventory => {
+    //    this.inventory = inventory;
+    //    this.initializeTable(inventory);
+    //   });
+  }
 
   ngOnInit() {
-    // return all records on initial load
-    this.subscription = this.inventoryList.getAll()
-    .subscribe(inventory => {
-      this.inventory = inventory;
-      this.initializeTable(inventory);
-    });
-
+      this.fetchInventory();
   }
   
   ngOnDestroy(){

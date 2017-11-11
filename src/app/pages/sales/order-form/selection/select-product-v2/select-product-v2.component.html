@@ -51,6 +51,7 @@
     [header]="'Supplier'"
     [sortable]="true"
     [resizable]="true"
+    [visible]="false"
     >
     </data-table-column>
   
@@ -63,10 +64,19 @@
     </data-table-column>
   
     <data-table-column
-    [property]="'Quantity'"  
-    [header]="'Stock Quantity'"
+    [property]="'available_qty'"  
+    [header]="'Available Quantity'"
     [sortable]="true"
     [resizable]="true"
+    >
+    </data-table-column>
+
+    <data-table-column
+    [property]="'deficient_qty'"  
+    [header]="'Deficit Quantity'"
+    [sortable]="true"
+    [resizable]="true"
+    [visible]="false"
     >
     </data-table-column>
     
@@ -75,6 +85,7 @@
     [header]="'UOM'"
     [sortable]="false"
     [resizable]="true"
+    [visible]="false"
     >
     </data-table-column>
 
@@ -94,6 +105,7 @@
   [header]="'Acquisition Price'"
   [sortable]="true"
   [resizable]="true"
+  [visible]="false"
   >
   <ng-template #dataTableCell let-item="item">
     P {{ item.AcquisitionPrice | number:'1.2' }}
@@ -112,7 +124,7 @@
 
   <data-table-column
     [property]="'$id'"  
-    [header]="'Add to order list'" 
+    [header]="'Action'" 
   >
     <ng-template #dataTableCell let-item="item">
       <button type="button" (click)='save(item)'>Add</button>
