@@ -1,3 +1,4 @@
+import { SharedOrderService } from './services/shared/sales/shared-order.service';
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 
@@ -28,6 +29,7 @@ const SERVICES = [
   GlobalService,
   CustomerService,
   SalesReportService,
+  SharedOrderService,
   InventoryService,
   SalesSummaryComponent,
   PrintService,

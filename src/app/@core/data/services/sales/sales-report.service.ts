@@ -21,10 +21,12 @@ export class SalesReportService {
         .map((res: Response) => res.json());
       }
 
-  update(soid, sodata) {
-    return this.http.put(this._url + 'SalesOrderHeaders/' + soid, sodata)
+  update(soid, orderHeader) {
+    // debugger
+    this.http.put(this._url + 'SalesOrderHeaders/' + soid, orderHeader)
     .do(this.logResponse)
-    .map((res: Response) => res.json());
+    .map((res: Response) => res.json())
+    .subscribe();
   }
 
   // sales orders

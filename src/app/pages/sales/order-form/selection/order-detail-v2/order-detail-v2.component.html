@@ -69,10 +69,11 @@
 
   <data-table-column
   [property]="'$id'"  
+  [header]="'Action'" 
 >
   <ng-template #dataTableCell let-item="item">
-    <button (click)='save(item)'>Update</button>
-    <button (click)='remove(item)'>Remove</button>
+    <button type="button" (click)='save(item)'>Update</button>
+    <button type="button" (click)='remove(item)'>Remove</button>
   </ng-template>
 </data-table-column>
 

@@ -25,7 +25,6 @@
                         </div>
                   </div>
                   <div class="col-6">
-                    <div class="form-group">
                       <div class="form-group">
                           <label for="Discontinued">Discontinued</label>
                           <select #Discontinued="ngModel" [(ngModel)]="p.Discontinued" name="Discontinued" id="Discontinued" class="form-control" required>
@@ -37,7 +36,6 @@
                             Discontinued is required.
                           </div>
                       </div>        
-                    </div>
                   </div>
                 </div>
                 
@@ -63,10 +61,11 @@
                   <div *ngIf="imageUrl.errors.url">Please enter a valid URL.</div>
                 </div> 
               </div>         -->
-              <button [disabled]="!f.valid" class="btn btn-primary">Save</button>
+              <button type="submit" [disabled]="!f.valid" class="btn btn-primary">Save</button>
               <span>-</span>
+              <button type="button" (click)="back()" id="back" class="btn btn-primary">Back</button> 
             </form>    
-            <button (click)="back()" id="back" class="btn btn-primary">Back</button> 
+            
         </div>
       </div>
   </nb-card-body>
