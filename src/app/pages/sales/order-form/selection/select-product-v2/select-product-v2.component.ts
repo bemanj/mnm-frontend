@@ -23,7 +23,6 @@ export class SelectProductV2Component implements OnInit {
   data;
   @Input('master') masterName: string;
   @Input('soid') soid: string;
-  private totalAmount = 0;
   postData$;
   message: string;
 
@@ -32,15 +31,8 @@ export class SelectProductV2Component implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private globalservice: GlobalService,
-    private sharedOrderService: SharedOrderService,
-  ) { 
+    private sharedOrderService: SharedOrderService,) {
 
-      
-    this.subscription = this.inventoryList.getAll()
-    .subscribe(inventory => {
-      this.inventory = inventory;
-      this.initializeTable(inventory);
-    });
   }
 
   private initializeTable(inventoryList: InventoryList[]) {
@@ -58,84 +50,62 @@ export class SelectProductV2Component implements OnInit {
       .then(items => this.items = items);    
   }
 
-   save(item) {
-
-    
+  save(item) {
+    // reference salesorderid
+    let id = this.soid;
+    // validate quantity
     if (item.OrderQuantity > 0 && !isNaN(item.OrderQuantity)) {
-      
-      var postdata;
-      // console.log('Amount :' + item.Price * item.OrderQuantity);
-      // this.route.paramMap
-      // .subscribe(params => {
-        let id = this.soid;
-
-        this.totalAmount = item.Price * item.OrderQuantity;
-
-        postdata = {
-          SalesOrderID: id
+      // computation
+      const totalAmount = item.Price * item.OrderQuantity;
+      // build json 
+      const postdata = {
+          SalesOrderID: this.soid
           , StockId: item.StockId
-          , SalesOrderNumber: 'SO' + id
+          , SalesOrderNumber: 'SO' + this.soid
           , ProductId: item.ProductId
           , UnitPrice: item.Price
           , Article: item.Article
           , UOM: item.UOM
           , Quantity: item.OrderQuantity
           , Discount: 0
-          , TotalAmount: this.totalAmount
+          , TotalAmount: totalAmount
         }
-
         // add to orders
         this.orderdetailService.create(postdata).subscribe(data => { 
           this.postData$ = data
-          this.fetchData(id);
+          this.fetchData(this.soid);
         });
-        
-        console.log(id);
-        // this.sendMessage();
-      // });
-
-     
-      
-      // this.router.navigate(['/order-detail']);
-
-    }
-    else{
+    } else {
       alert('Invalid quantity :' + item.OrderQuantity);
     }
+  }
 
-    
-
-      
-    }
-
-    sendMessage(): void {
+  // testing component communications
+  sendMessage(): void {
       this.globalservice.sendMessage('Message from Select order to Orders component')
-    }
+  }
 
-    clearMessage(): void {
-      this.globalservice.clearMessage();
-    }
+  clearMessage(): void {
+    this.globalservice.clearMessage();
+  }
 
-    getSelectedComponents() {
-      // this.sharedMessage.changeNav('any') //dataFromControls is string data..
-      // this.dataFromSisterComponent = '';   
-    } 
+  getSelectedComponents() {
+  } 
 
+  // get new record from service
   fetchData(id) {
     this.sharedOrderService.getOrders(id);
-    // this.subscription = this.sharedOrderService.navItem$
-    // .subscribe(
-    //   i => {
-    //     this.orderdetails = i;
-    //     this.initializeTable(i);
-    //     console.log(i)
-    //   }
-    // )
   }
 
   ngOnInit() {
-  }
+    // return all records on initial load
+    this.subscription = this.inventoryList.getAll()
+    .subscribe(inventory => {
+      this.inventory = inventory;
+      this.initializeTable(inventory);
+    });
 
+  }
   
   ngOnDestroy(){
     this.subscription.unsubscribe();

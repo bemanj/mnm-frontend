@@ -41,9 +41,8 @@ export class OrderDetailV2Component implements OnInit, OnDestroy, OnChanges {
   }
 
   reloadItems(params) {
-    console.log(params);
+    // console.log(params);
     if (!this.tableResource) { return; }
-    // console.log('after');
     this.tableResource.query(params)
       .then(items => this.items = items);
     this.update();
