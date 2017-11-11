@@ -1,3 +1,4 @@
+import { SharedOrderService } from './../../../../../@core/data/services/shared/sales/shared-order.service';
 import { GlobalService } from './../../../../../@core/data/services/global/global.service';
 import { DetailService } from './../../../../../@core/data/services/sales/order/detail.service';
 import { InventoryService } from '../../../../../@core/data/services/inventory/inventory.service';
@@ -24,12 +25,15 @@ export class SelectProductV2Component implements OnInit {
   @Input('soid') soid: string;
   private totalAmount = 0;
   postData$;
+  message: string;
 
   constructor(private inventoryList: InventoryService,
     private orderdetailService: DetailService,
     private route: ActivatedRoute,
     private router: Router,
-    private globalservice: GlobalService) { 
+    private globalservice: GlobalService,
+    private sharedOrderService: SharedOrderService,
+  ) { 
 
       
     this.subscription = this.inventoryList.getAll()
@@ -61,9 +65,9 @@ export class SelectProductV2Component implements OnInit {
       
       var postdata;
       // console.log('Amount :' + item.Price * item.OrderQuantity);
-      this.route.paramMap
-      .subscribe(params => {
-        let id = params.get('id');
+      // this.route.paramMap
+      // .subscribe(params => {
+        let id = this.soid;
 
         this.totalAmount = item.Price * item.OrderQuantity;
 
@@ -79,10 +83,16 @@ export class SelectProductV2Component implements OnInit {
           , Discount: 0
           , TotalAmount: this.totalAmount
         }
-        console.log(postdata);
-        this.orderdetailService.create(postdata).subscribe(data => this.postData$ = data);
+
+        // add to orders
+        this.orderdetailService.create(postdata).subscribe(data => { 
+          this.postData$ = data
+          this.fetchData(id);
+        });
+        
+        console.log(id);
         // this.sendMessage();
-      });
+      // });
 
      
       
@@ -105,6 +115,23 @@ export class SelectProductV2Component implements OnInit {
     clearMessage(): void {
       this.globalservice.clearMessage();
     }
+
+    getSelectedComponents() {
+      // this.sharedMessage.changeNav('any') //dataFromControls is string data..
+      // this.dataFromSisterComponent = '';   
+    } 
+
+  fetchData(id) {
+    this.sharedOrderService.getOrders(id);
+    // this.subscription = this.sharedOrderService.navItem$
+    // .subscribe(
+    //   i => {
+    //     this.orderdetails = i;
+    //     this.initializeTable(i);
+    //     console.log(i)
+    //   }
+    // )
+  }
 
   ngOnInit() {
   }

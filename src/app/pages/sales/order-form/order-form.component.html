@@ -92,13 +92,13 @@
         <nb-card-header>Product selection</nb-card-header>
         <nb-card-body>
             <!-- <ngx-select-product></ngx-select-product> -->
-            <ngx-select-product-v2></ngx-select-product-v2>
+            <ngx-select-product-v2 [soid]="salesorderid"></ngx-select-product-v2>
         </nb-card-body>
       </nb-card>
       <nb-card>
         <nb-card-header>Orders</nb-card-header>
         <nb-card-body>
-          <ngx-order-detail-v2></ngx-order-detail-v2>
+          <ngx-order-detail-v2 [soid]="salesorderid"></ngx-order-detail-v2>
         </nb-card-body>
       </nb-card>
     </div>

@@ -55,26 +55,24 @@ export class OrderFormComponent implements OnInit, OnDestroy {
 
   updateSO(item) {
      // alert('test save function');
-     debugger
      alert('Sales order will be updated');
      
-           console.log('coy ' + item.Company);
+           console.log('coy ' + item.company);
      
            const date = new Date();
      
            const sodata = {
-             SalesOrderID: this.salesorderid,
-             Customer: item.customer,
-            //  TaxAmt: item.TaxAmt, // orderHeader.soTaxAmt,
-            //  Freight: item.Freight, // orderHeader.soFreight,
-             Comment: item.comment, // orderHeader.soComment,
-            //  OrderDate: date, // create alternative that not includes update of order date column
+             SalesOrderId: this.salesorderid,
+             Customer: item.customer[0],
+             OnlineOrderFlag: item.Flag,
+             Comment: item.comment,
              ModifiedDate: date,
-             OnlineOrderFlag: item.Flag
+             Fulfilled: false,
            };
            console.log(sodata);
+    //  debugger
+           
            this.salesreportservice.update(this.salesorderid, sodata)
-           .subscribe();
              // console.log('update so' + this.orderHeader.SalesOrderID)
          }
 
