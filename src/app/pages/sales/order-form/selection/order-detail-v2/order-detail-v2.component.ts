@@ -1,12 +1,13 @@
-import { SharedOrderService } from './../../../../../@core/data/services/shared/sales/shared-order.service';
-import { GlobalService } from '../../../../../@core/data/services/global/global.service';
-import { DetailService } from '../../../../../@core/data/services/sales/order/detail.service';
-import { SalesOrder } from './../../../../../@core/models/sales-order';
-import { OrderDetailList } from './../../../../../@core/models/order-detail';
+import { Component, Input, OnChanges, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DataTableResource } from 'angular-4-data-table';
-import { Component, OnInit, Input, OnDestroy, OnChanges } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
+
+import { GlobalService } from '../../../../../@core/data/services/global/global.service';
+import { DetailService } from '../../../../../@core/data/services/sales/order/detail.service';
+import { SharedOrderService } from './../../../../../@core/data/services/shared/sales/shared-order.service';
+import { OrderDetailList } from './../../../../../@core/models/order-detail';
+import { SalesOrder } from './../../../../../@core/models/sales-order';
 
 @Component({
   selector: 'ngx-order-detail-v2',
@@ -28,9 +29,7 @@ export class OrderDetailV2Component implements OnInit, OnDestroy, OnChanges {
     private router: Router,
     private route: ActivatedRoute,
     private sharedOrderService: SharedOrderService,
-    private globalservice: GlobalService ) {
-
-    }
+    private globalservice: GlobalService ) { }
 
   private initializeTable(orderdetailList: OrderDetailList[]) {
     this.tableResource = new DataTableResource(orderdetailList);
@@ -61,8 +60,6 @@ export class OrderDetailV2Component implements OnInit, OnDestroy, OnChanges {
     this.update();
   }
 
-  
-
   update() {
     this.sharedOrderService.getOrders(this.soid);
   }
@@ -79,11 +76,7 @@ export class OrderDetailV2Component implements OnInit, OnDestroy, OnChanges {
     )
   }
 
-
-
   ngOnChanges() {
-    // this.fetchData(this.soid);
-    // this.update();
   }
 
   // initialize

@@ -1,12 +1,13 @@
-import { SharedOrderService } from './../../../../../@core/data/services/shared/sales/shared-order.service';
-import { GlobalService } from './../../../../../@core/data/services/global/global.service';
-import { DetailService } from './../../../../../@core/data/services/sales/order/detail.service';
-import { InventoryService } from '../../../../../@core/data/services/inventory/inventory.service';
-import { InventoryList } from './../../../../../@core/models/inventory';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DataTableResource } from 'angular-4-data-table';
-import { Component, OnInit, Input} from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
+
+import { InventoryService } from '../../../../../@core/data/services/inventory/inventory.service';
+import { GlobalService } from './../../../../../@core/data/services/global/global.service';
+import { DetailService } from './../../../../../@core/data/services/sales/order/detail.service';
+import { SharedOrderService } from './../../../../../@core/data/services/shared/sales/shared-order.service';
+import { InventoryList } from './../../../../../@core/models/inventory';
 
 @Component({
   selector: 'ngx-select-product-v2',
