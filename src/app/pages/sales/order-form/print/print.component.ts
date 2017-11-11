@@ -63,33 +63,54 @@ export class PrintComponent implements OnInit {
     <head>
         <meta charset="utf-8" />
         <style>
-          .val td {
-              border: 1px solid black;
-              border-collapse: collapse;
-          }
-          .bordered {
+        .orders {
+          table-layout: fixed;
+          width: 100%;
+          // height: 100%;
+          // white-space: nowrap;
+        }
+        // .orders td {
+        //   white-space: nowrap;
+        //   overflow: hidden;
+        //   text-overflow: ellipsis;
+        // }
+        .val td {
             border: 1px solid black;
-                  border-collapse: collapse;
-          }
-          .bottomborder{
-            border-bottom: 1px solid black;
-          }
-          .topborder{
-            border-top : 1px solid black;
-          }
-          .txtcenter {
-            text-align: center;
-          }
-          .txtleft {
-            text-align: left;
-          }
-          .txtright {
-            text-align: right;
-          }
-          .fixheight {
-            line-height: 20px;
-            height: 20px;
-          }
+            border-collapse: collapse;
+        }
+        .bordered {
+          border: 1px solid black;
+                border-collapse: collapse;
+        }
+        .closerightborder{
+          border-top: 1px solid black;
+          border-right: 1px solid black;
+          border-bottom: 1px solid black;
+        }
+        .topbottomborder{
+          border-top: 1px solid black;
+          border-bottom: 1px solid black;
+        }
+        .bottomborder{
+          border-bottom: 1px solid black;
+        }
+        .topborder{
+          border-top : 1px solid black;
+        }
+        .txtcenter {
+          text-align: center;
+        }
+        .txtleft {
+          text-align: left;
+        }
+        .txtright {
+          text-align: right;
+        }
+        .fixheight {
+          line-height: 20px;
+          height: 20px;
+        }
+        
         </style>
     </head>
 
