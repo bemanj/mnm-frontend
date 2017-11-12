@@ -19,8 +19,8 @@ import { OrderDetailV2Component } from './order-form/selection/order-detail-v2/o
   ],
   declarations: [
     ...routedComponents,
-    SelectProductV2Component,
-    OrderDetailV2Component,
+    // SelectProductV2Component,
+    // OrderDetailV2Component,
   ],
   providers: [
     SmartTableService,

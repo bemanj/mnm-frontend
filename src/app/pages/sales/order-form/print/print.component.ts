@@ -110,7 +110,6 @@ export class PrintComponent implements OnInit {
           line-height: 20px;
           height: 20px;
         }
-        
         </style>
     </head>
 
