@@ -26,6 +26,9 @@ const routes: Routes = [{
     path: 'editors',
     loadChildren: './editors/editors.module#EditorsModule',
   }, {
+    path: 'inventory',
+    loadChildren: './inventory/inventory.module#InventoryModule',
+  },{
     path: 'forms',
     loadChildren: './forms/forms.module#FormsModule',
   },{
