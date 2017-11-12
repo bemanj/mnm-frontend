@@ -13,16 +13,16 @@
           <td style="vertical-align:top">
       <p>
                    Date:{{ orderHeader.OrderDate | date }}&nbsp;
-                  <br>Terms:30 Days&nbsp;
+                  <br>Terms:{{ customerinfo.Terms }} Days&nbsp;
                   <br>P.O. No.&nbsp;
         <br>
         <br><b>SALES ORDER:</b> <b> {{ orderHeader.SalesOrderID}}</b>
         <br>
-        <br><b>Customer: </b> <b>{{ orderHeader.Customer }}</b>
+        <br><b>Customer: </b> <b>{{ customerinfo.CompanyName }}</b>
         <br>Business Style: <b>Distribution</b>
-        <br>TIN: <b>000-000-000-000</b>
-        <br>Contact No.: <b>(63)0912-345-6789</b>
-        <br>Sales Rep: <b>Juan Dela Cruz</b>
+        <br>TIN: <b>000-000-000-00</b>
+        <br>Contact No.: <b>{{ customerinfo.Phone }}</b>
+        <br>Sales Rep: <b></b>
       </p>
     </td>
           <td colspan="2" style="width:400px; vertical-align:top" class="txtright">
@@ -74,28 +74,28 @@
                     </tr>
                     <tr>
                         <!-- <p>*** *** *** *** *** *class="bottomborder"**      Page( 1 of 1 )      *** *** *** *** *** ***</p> -->
-                        <td colspan="10" ></td> 
+                        <td colspan="10" class="bottomborder"></td> 
                     </tr>
                     <tr class="fixheight">
                         <td colspan="2"></td>
                         <td class="txtright"><b>Zero Rated Sales :</b></td>
-                        <td class="txtright topbottomborder"><b>P 99,823,320.00</b></td>  <!-- {{ orderHeader.SubTotal |  number:'1.2' }} -->
-                        <td class="txtright topbottomborder"></td>
+                        <td class="txtright"><b>P 0.00</b></td>  <!-- {{ orderHeader.SubTotal |  number:'1.2' }} -->
+                        <td></td>
                         <td colspan="3" class="txtright"><b>Total Sales(VAT Inclusive) :</b></td>
-                        <td class="txtright topbottomborder"><b>P {{ orderHeader.SubTotal |  number:'1.2' }}</b></td>
-                        <td class="closerightborder"></td>
+                        <td class="txtright"><b>P {{ orderHeader.SubTotal |  number:'1.2' }}</b></td>
+                        <td></td>
                     </tr>
                     <tr class="fixheight">
                         <td colspan="5"></td>
                         <td colspan="3" class="txtright"><b>Add Vat :</b></td>
-                        <td class="txtright topbottomborder"><b>P {{ orderHeader.TaxAmt |  number:'1.2' }}</b></td>
-                        <td class="closerightborder"></td>
+                        <td class="txtright"><b>P {{ orderHeader.TaxAmt |  number:'1.2' }}</b></td>
+                        <td></td>
                     </tr>
                     <tr class="fixheight">
-                        <td colspan="5"></td>
-                        <td colspan="3" class="txtright"><b>TOTAL AMOUNT DUE :</b></td>
-                        <td class="txtright topbottomborder"><b>P {{ orderHeader.TotalDue |  number:'1.2' }}</b></td>
-                        <td class="closerightborder"></td>
+                        <td colspan="5" class="bottomborder"></td>
+                        <td colspan="3" class="txtright bottomborder"><b>TOTAL AMOUNT DUE :</b></td>
+                        <td class="txtright bottomborder"><b>P {{ orderHeader.TotalDue |  number:'1.2' }}</b></td>
+                        <td class="bottomborder"></td>
                     </tr>
             </table>
           </td> 

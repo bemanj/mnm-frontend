@@ -22,6 +22,12 @@ export class CustomerService {
      .map((res: Response) => res.json());
   }
 
+  getById(id) {
+    return this.http.get(this._url + 'CustomerLists/' + id)
+     .do(this.logResponse)
+     .map((res: Response) => res.json());
+  }
+
   private logResponse(res: Response) {
       console.log(res);
   }

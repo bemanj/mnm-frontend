@@ -8,6 +8,7 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
 import { Subscription } from 'rxjs/Subscription';
 import { AngularPrint } from 'angular-print';
+import { CustomerService } from '../../../../@core/data/services/customer/customer.service';
 
 @Component({
   selector: 'ngx-print',
@@ -19,6 +20,7 @@ export class PrintComponent implements OnInit {
     order;
     orderItems;
     someThis;
+    customerinfo = {};
     id;
     subscription: Subscription;
 
@@ -27,19 +29,9 @@ export class PrintComponent implements OnInit {
   private router: Router,
   private route: ActivatedRoute,
   private printService: PrintService,
+  private customerservice: CustomerService,
   private salesreportservice: SalesReportService) {
 
-    // this.id = this.route.snapshot.paramMap.get('id');
-    // this.order = orderService.getOrdersByOrderId(this.id);
-
-    // this.id = this.route.snapshot.paramMap.get('id')
-    // if (this.id) this.printService.get(this.id).take(1).subscribe(o => {
-    //     this.order = o
-    //     console.log(this.order)
-    // });
-    // if (this.id) this.printService.getItems(this.id);//.subscribe(o => this.orderItems = o);
-    // this.orderItems = this.getItems1(this.id);
-    // console.log(this.orderItems.title);
   }
 
   getItems1 (id) {
@@ -121,38 +113,34 @@ export class PrintComponent implements OnInit {
     popupWin.document.close();
   }
 
-  // getItems1 (id){
-  //   return this.db.list('/orders/'+ id + '/items/')
-  //         .subscribe(orders => {
-  //           this.orders = orders;
-  //           console.log(this.orders);
-  //         });
-  // }
-
-  // getItems2 (){
-  //   return this.db.list('/orders').map((items) => {
-  //     return items.map(item => {
-  //       item.metadata = this.db.object('/items/' + item.$key + '/product/');
-  //       return item;
-  //     });
-  //   })
-  // }
-
+  // on customer change
+  onselectedcustomer(data) {
+    // this.customerinfo = {};
+    // return data of customer
+    if (data) {
+      // debugger
+      this.customerservice.getById(data)
+        .subscribe(c => {
+          this.customerinfo = c
+        });
+    }
+  }
 
   ngOnDestroy() {
     // this.subscription.unsubscribe();
   }
+
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id');
     if (this.id) {
       this.salesreportservice.getfSO(this.id).take(1).subscribe(p => {
         this.orderHeader = p;
-        console.log('so datalist');
-        console.log(this.orderHeader);
+        // console.log('so datalist');
+        // console.log(this.orderHeader);
+        this.onselectedcustomer(p.Customer);
         this.printService.get(this.id).subscribe(o => {
             this.order = o;
-              console.log(this.order);
-
+              // console.log(this.order);
         });
       });
     }
