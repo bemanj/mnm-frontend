@@ -36,8 +36,10 @@ export class DetailService {
   }
 
   update(id, data) {
-    this.http.put(this._url + 'SalesOrderDetails/' + id, data)
-    .subscribe((res: Response) => res.json());
+    return this.http.put(this._url + 'SalesOrderDetails/' + id, data)
+    .do(this.logResponse)
+    .map((res: Response) => res.json());
+    // .subscribe((res: Response) => res.json());
   }
 
   delete(inventoryId) {

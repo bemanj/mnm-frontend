@@ -72,7 +72,7 @@
   [header]="'Action'" 
 >
   <ng-template #dataTableCell let-item="item">
-    <button type="button" (click)='save(item)'>Update</button>
+    <button type="button" (click)='updateOrder(item)'>Update</button>
     <button type="button" (click)='remove(item)'>Remove</button>
   </ng-template>
 </data-table-column>
