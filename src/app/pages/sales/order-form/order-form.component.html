@@ -70,10 +70,10 @@
             </nb-card-header>
             <nb-card-body>
               <div class="col-sm-12 input-group">
-                <textarea #comment="ngModel" [(ngModel)]="item.Comment" rows="5" name="comment" id="comment" type="text" placeholder="Comment" class="form-control"></textarea>
+                <textarea #comment="ngModel" [(ngModel)]="soHeader.Comment" rows="5" name="comment" id="comment" type="text" placeholder="Comment" class="form-control"></textarea>
               </div>
               <div class="col-sm-6 input-group">
-                  <select #Flag="ngModel" [(ngModel)]="item.OnlineOrderFlag" name="Flag" id="Flag" aria-placeholder="Order flag" class="form-control" required>
+                  <select #Flag="ngModel" [(ngModel)]="soHeader.OnlineOrderFlag" name="Flag" id="Flag" aria-placeholder="Order flag" class="form-control" required>
                     <option value=""></option>
                     <option>Call</option>
                     <option>Walk In</option>

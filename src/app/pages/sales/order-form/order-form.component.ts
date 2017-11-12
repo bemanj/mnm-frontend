@@ -18,7 +18,7 @@ export class OrderFormComponent implements OnInit, OnDestroy {
   salesorderid;
   customer$: CustomerList[];
   customerinfo = {};
-  item = {};
+  // item = {};
   address = {};
   soHeader = {};
   message: any;
@@ -33,18 +33,26 @@ export class OrderFormComponent implements OnInit, OnDestroy {
               }
 
   ngOnInit() {
+    // debugger
+    
     // Get sales order id
     this.salesorderid = this.route.snapshot.paramMap.get('id');
-    // Load the data of the selected sales order id
-    this.salesreportservice.getfSO(this.salesorderid).take(1).subscribe(p => {
-      this.soHeader = p;
-      console.log(this.soHeader);
-    });
+
     // Load customer list
     this.customerservice.getAll().subscribe(c => {
       this.customer$ = c;
       console.log(this.customer$);
+      // Load the data of the selected sales order id
+      this.salesreportservice.getfSO(this.salesorderid).take(1).subscribe(p => {
+        this.soHeader = p;
+        if(!p.Customer) {
+          this.customerinfo = this.customer$.find(c => c.CustomerID == p.Customer);
+        }
+        console.log(this.soHeader);
+      });
     });
+    
+    
     // console.log('soid ' + this.salesorderid);
   }
 
@@ -78,14 +86,11 @@ export class OrderFormComponent implements OnInit, OnDestroy {
 
   // on customer change
   onselectedcustomer(data) {
-    // console.log(data);
     this.customerinfo = {};
     // return data of customer
     if (data) {
       this.customerinfo = this.customer$.find(c => c.CustomerID == data);
     }
-    // this.address = this.customerinfo.Address +
-    // console.log(this.customerinfo);
   }
 
   print(id) {
