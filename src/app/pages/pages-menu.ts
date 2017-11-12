@@ -11,7 +11,16 @@ export const MENU_ITEMS: NbMenuItem[] = [
     title: 'FEATURES',
     group: true,
   },
-
+  {
+    title: 'Customer',
+    icon: 'fa fa-address-card',// fa fa-address-card
+    children: [
+      {
+        title: 'Customer List',
+        // link: '/pages/customer/list',
+      },
+    ],
+  },
   {
     title: 'Inventory',
     icon: 'nb-grid-a',
