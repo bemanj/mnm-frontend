@@ -1,3 +1,179 @@
-<p>
-  inventory-form works!
-</p>
+
+<nb-card>
+
+  <nb-card-header>
+    Product Form
+  </nb-card-header>
+
+
+  <nb-card-body>
+      <form #f="ngForm" (ngSubmit)="save(f.value)">
+    <div class="row">
+      
+      <div class="col-lg-6">
+
+        <div class="form-group">
+          <label for="supplierid">Supplier ID</label>
+          <input #supplierid="ngModel" [(ngModel)]="inventory.SupplierId" name="supplierid" id="supplierid" type="number" class="form-control" required>
+          <!-- <div class="alert alert-danger" *ngIf="SupplierId.touched && PONumber.invalid">
+            Supplier ID is required.
+          </div> -->
+        </div>        
+<!-- 
+        <div class="form-group">
+          <label for="productid">Category</label>
+          <input #productid="ngModel" [(ngModel)]="inventory.ProductId" name="productid" id="productid" type="number" class="form-control" required>
+          <div class="alert alert-danger" *ngIf="ProductId.touched && ProductId.invalid">
+            Product ID is required.
+          </div>
+        </div>    -->
+
+        <div class="form-group">
+          <label for="productid">Product</label>
+          <!-- <input #productid="ngModel" [(ngModel)]="inventory.ProductId" name="productid" id="productid" type="number" class="form-control" required> -->
+          <!-- (change)="onselectedcustomer(productid.value)" -->
+          <select #productid="ngModel" [(ngModel)]="inventory.ProductId"  name="productid" id="productid" class="form-control" required>
+              <option value=""></option>
+              <option *ngFor="let p of product$" [value]="p.ProductId">
+                {{ p.ProductTitle }}
+              </option>
+          </select>
+          <div class="alert alert-danger" *ngIf="productid.touched && productid.invalid">
+            Product is required.
+          </div>
+        </div>        
+
+        <div class="form-group">
+          <label for="brand">Brand</label>
+          <input #brand="ngModel" [(ngModel)]="inventory.Brand" name="brand" id="brand" type="text" class="form-control" required>
+          <!-- <div class="alert alert-danger" *ngIf="Brand.touched && Brand.invalid">
+            Brand is required.
+          </div> -->
+        </div>        
+
+        <div class="form-group">
+          <label for="article">Article</label>
+          <input #article="ngModel" [(ngModel)]="inventory.Article" name="article" id="article" type="text" class="form-control" required>
+          <!-- <div class="alert alert-danger" *ngIf="article.touched && UOM.invalid">
+            UOM is required.
+          </div> -->
+        </div>   
+
+      </div>
+
+      <div class="col-lg-6">
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="price">Price</label>
+                <div class="input-group">
+                  <span class="input-group-addon">PhP</span>
+                  <input #price="ngModel" [(ngModel)]="inventory.Price" name="price" id="price" type="number" class="form-control" required [min]="0">
+                </div>
+                <!-- <div class="alert alert-danger" *ngIf="Price.touched && Price.invalid">
+                  <div *ngIf="Price.errors.required">Price is required.</div>
+                  <div *ngIf="Price.errors.min">Price should be 0 or higher.</div>
+                </div> -->
+              </div>        
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="quantity">Quantity In Stock</label>
+                <div class="input-group">
+                  <input #quantity="ngModel" [(ngModel)]="inventory.Quantity" name="quantity" id="quantity" type="number" class="form-control" placeholder="0" required [min]="0">
+                </div>
+                <!-- <div class="alert alert-danger" *ngIf="Quantity.touched && Quantity.invalid">
+                  <div *ngIf="Quantity.errors.required">Quantity in stock is required.</div>
+                  <div *ngIf="Quantity.errors.min">Quantity in stock should be 0 or higher.</div>
+                </div> -->
+              </div>
+            </div>  
+          </div>
+    
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="acquisitionprice">Acquisition Price</label>
+                <div class="input-group">
+                  <span class="input-group-addon">PhP</span>
+                  <input #acquisitionprice="ngModel" [(ngModel)]="inventory.AcquisitionPrice" name="acquisitionprice" id="acquisitionprice" type="number" class="form-control" required [min]="0">
+                </div>
+                <!-- <div class="alert alert-danger" *ngIf="AcquisitionPrice.touched && AcquisitionPrice.invalid">
+                  <div *ngIf="AcquisitionPrice.errors.required">Acquisition Price is required.</div>
+                  <div *ngIf="AcquisitionPrice.errors.min">Acquisition Price should be 0 or higher.</div>
+                </div> -->
+              </div>        
+            </div>
+
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="uom">UOM</label>
+                <input #uom="ngModel" [(ngModel)]="inventory.UOM" name="uom" id="uom" type="text" class="form-control" required>
+                <!-- <div class="alert alert-danger" *ngIf="UOM.touched && UOM.invalid">
+                  UOM is required.
+                </div> -->
+                </div> 
+            </div>
+
+          </div>
+
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="ponumber">PO Number</label>
+                <input #ponumber="ngModel" [(ngModel)]="inventory.PONumber" name="ponumber" id="ponumber" type="number" class="form-control" required>
+                <!-- <div class="alert alert-danger" *ngIf="PONumber.touched && PONumber.invalid">
+                  PO Number is required.
+                    </div> -->
+              </div>  
+            </div>
+
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="stockid">Stock Number</label>
+                    <input #stockId="ngModel" [(ngModel)]="inventory.StockId" name="stockid" id="stockirxd" type="number" class="form-control" required>
+                    <!-- <div class="alert alert-danger" *ngIf="StockId.touched && StockId.invalid">
+                      Stock Number is required.
+                    </div> -->
+                  </div>   
+            </div>
+          </div>
+
+          <div class="row">
+            <!-- <div class="col-sm-6">
+              <div class="form-group">
+                <label for="DateDelivered">Date Delivered</label>
+                <div class="input-group">
+                    <input name="DateDelivered" [value]="inventory.DateDelivered | date: 'short'" [(ngModel)]="inventory.DateDelivered" dateTimePicker />
+                </div>
+                <div class="alert alert-danger" *ngIf="DateDelivered.touched && DateDelivered.invalid">
+                  Date Delivered is required.
+                </div> 
+              </div>   
+            </div> -->
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="PutAwayLocation">Put Away Location</label>
+                <input #PutAwayLocation="ngModel" [(ngModel)]="inventory.PutAwayLocation" name="PutAwayLocation" id="PutAwayLocation" type="number" class="form-control" required>
+                <!-- <div class="alert alert-danger" *ngIf="PutAwayLocation.touched && PutAwayLocation.invalid">
+                  Put Away Location is required.
+                </div> -->
+              </div> 
+            </div>
+          </div>                  
+      </div>
+      
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+          <button type="submit"[disabled]="!f.valid" class="btn btn-primary">Save</button>
+      </div>
+    </div>
+  </form>      
+  </nb-card-body>
+  <nb-card-footer>
+      <button *ngIf="id" type="button" (click)="delete()" class="btn btn-danger">Delete</button>
+  </nb-card-footer>
+
+
+</nb-card>

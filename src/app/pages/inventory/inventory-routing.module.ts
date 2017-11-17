@@ -12,6 +12,9 @@ const routes: Routes = [{
     path: 'list',
     component: InventoryListComponent,
   }, {
+    path: 'form/:id',
+    component: InventoryFormComponent,
+  }, {
     path: 'form',
     component: InventoryFormComponent,
   }],
