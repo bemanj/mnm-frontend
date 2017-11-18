@@ -7,7 +7,7 @@ import { Http, Response } from '@angular/http';
 import { ConfigService } from '../config/config.service';
 
 @Injectable()
-export class InventoryService {
+export class SupplierService {
   
   private _url: string;
   
@@ -18,25 +18,25 @@ export class InventoryService {
 
   create(body) { 
     console.log(body);
-    return this.http.post(this._url + 'inventorystocks', body)
+    return this.http.post(this._url + 'suppliers', body)
     .do(this.logResponse)
     .map((res: Response) => res.json());
   }
 
     
-  update(inventoryId, inventory) { 
-    this.http.put(this._url + 'inventorystocks/' + inventoryId,inventory)
+  update(id, record) { 
+    this.http.put(this._url + 'suppliers/' + id, record)
     .subscribe((res: Response) => res.json());;
   }
 
-  get(inventoryId) { 
-    return this.http.get(this._url + 'inventorystocks/' + inventoryId)
+  get(id) { 
+    return this.http.get(this._url + 'suppliers/' + id)
     .do(this.logResponse)
     .map((res: Response) => res.json());
   }
   
   getAll() {
-    return this.http.get(this._url + 'ViewInventory')
+    return this.http.get(this._url + 'suppliers')
       .do(this.logResponse)
       .map((res: Response) => res.json());
   }

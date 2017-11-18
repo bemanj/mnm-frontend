@@ -25,8 +25,8 @@ export class SalesOrderComponent  implements OnInit{
         title: 'SO ID',
         type: 'number',
       },
-      Customer: {
-        title: 'Customer',
+      CompanyName: {
+        title: 'Company',
         type: 'string',
       },
       OrderDate: {

@@ -1,10 +1,10 @@
+import { DetailService } from './../../../../../@core/data/services/sales/order/detail.service';
 import { Component, Input, OnChanges, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DataTableResource } from 'angular-4-data-table';
 import { Subscription } from 'rxjs/Subscription';
 
 import { GlobalService } from '../../../../../@core/data/services/global/global.service';
-import { DetailService } from '../../../../../@core/data/services/sales/order/detail.service';
 import { SharedOrderService } from './../../../../../@core/data/services/shared/sales/shared-order.service';
 import { OrderDetailList } from './../../../../../@core/models/order-detail';
 import { SalesOrder } from './../../../../../@core/models/sales-order';
@@ -25,7 +25,7 @@ export class OrderDetailV2Component implements OnInit, OnDestroy, OnChanges {
   @Input('salesorder') salesorder: SalesOrder[] = [];
   message: any;
 
-  constructor(private orderdetailList: DetailService,
+  constructor(private orderdetailService: DetailService,
     private router: Router,
     private route: ActivatedRoute,
     private sharedOrderService: SharedOrderService,
@@ -49,15 +49,33 @@ export class OrderDetailV2Component implements OnInit, OnDestroy, OnChanges {
 
   // remove order
   remove(item) {
-    this.orderdetailList.delete(item.SODetailsID).subscribe(r => {
+    this.orderdetailService.delete(item.SODetailsID).subscribe(r => {
       this.update() 
     });
   }
 
   // include a discount
-  save(item) {
-    console.log('order Discount ' + item.Discount  + 'sales order id: ' + item.$id);
-    this.update();
+  updateOrder(item) {
+    // alert('test save function');
+    // alert('Sales order will be updated');
+    
+    console.log('disc ' + item.Discount);
+
+    const totalAmount = (item.UnitPrice * item.Quantity) - item.Discount;
+
+    const order = {
+      SalesDetailsId: item.SODetailsID,
+      Discount: item.Discount,
+      TotalAmount: totalAmount
+    };
+
+    // console.log(order);
+    // debugger
+    this.orderdetailService.update(item.SODetailsID, order)
+    .subscribe(o => {
+      this.update();
+    });
+
   }
 
   update() {

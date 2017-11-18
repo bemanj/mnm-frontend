@@ -26,12 +26,18 @@ const routes: Routes = [{
     path: 'editors',
     loadChildren: './editors/editors.module#EditorsModule',
   }, {
+    path: 'inventory',
+    loadChildren: './inventory/inventory.module#InventoryModule',
+  },{
     path: 'forms',
     loadChildren: './forms/forms.module#FormsModule',
   },{
     path: 'product',
     loadChildren: './product/product.module#ProductModule',
   }, {
+    path: 'customer',
+    loadChildren: './customer/customer.module#CustomerModule',
+  }, {    
     path: 'sales',
     loadChildren: './sales/sales.module#SalesModule',
   }, {

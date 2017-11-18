@@ -72,7 +72,7 @@ export class SelectProductV2Component implements OnInit {
         // add to orders
         this.orderdetailService.create(postdata).subscribe(data => { 
           this.postData$ = data
-          this.fetchData(this.soid);
+          this.fetchOrder(this.soid);
           this.update();
         });
     } else {
@@ -96,7 +96,7 @@ export class SelectProductV2Component implements OnInit {
     this.sharedOrderService.getInventory();
   }
   // get new record from service
-  fetchData(id) {
+  fetchOrder(id) {
     this.sharedOrderService.getOrders(id);
   }
   // fetch updated inventory records
@@ -108,12 +108,6 @@ export class SelectProductV2Component implements OnInit {
         this.initializeTable(i);
         console.log(i);
      });
-     // return all records on initial load
-    //  this.subscription = this.inventoryList.getAll()
-    //  .subscribe(inventory => {
-    //    this.inventory = inventory;
-    //    this.initializeTable(inventory);
-    //   });
   }
 
   ngOnInit() {

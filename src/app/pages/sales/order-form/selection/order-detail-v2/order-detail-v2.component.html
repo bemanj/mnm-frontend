@@ -16,7 +16,7 @@
 
 <data-table
 [items]="items"
-[itemCount]="itemCount"
+[itemCount]="itemCount"[itemCount]="itemCount"
 (reload)="reloadItems($event)">
 
 <data-table-column
@@ -59,7 +59,7 @@
 
 <data-table-column
 [property]="'Discount'" 
-[header]="'Discount'" 
+[header]="'Discount Amount'" 
 >
   <ng-template #dataTableCell let-item="item">
     <!-- <input  [(ngModel)]="item.OrderQuantity" name="orderquantity" id="orderquantity" type="number" class="form-control" placeholder="0" required [min]="0"> -->
@@ -72,7 +72,7 @@
   [header]="'Action'" 
 >
   <ng-template #dataTableCell let-item="item">
-    <button type="button" (click)='save(item)'>Update</button>
+    <button type="button" (click)='updateOrder(item)'>Update</button>
     <button type="button" (click)='remove(item)'>Remove</button>
   </ng-template>
 </data-table-column>
