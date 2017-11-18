@@ -56,10 +56,8 @@ export class OrderFormComponent implements OnInit, OnDestroy {
     history.back()
   }
 
-  updateSO(item) {
-    // alert('test save function');
-    alert('Sales order will be updated');
-    // console.log('coy ' + item.company);
+  salesOrderUpdate(item, isFullfilled) {
+    
     const date = new Date();
 
     const sodata = {
@@ -68,14 +66,48 @@ export class OrderFormComponent implements OnInit, OnDestroy {
       OnlineOrderFlag: item.Flag,
       Comment: item.comment,
       ModifiedDate: date,
-      Fulfilled: false,
+      Fulfilled: isFullfilled,
     };
+    
     console.log(sodata);
     //  debugger
-           
+            
     this.salesreportservice.update(this.salesorderid, sodata)
       // console.log('update so' + this.orderHeader.SalesOrderID)
-    }
+  }
+
+  updateSO(item) {
+    // alert('test save function');
+    alert('Sales order will be updated');
+    this.salesOrderUpdate(item, false)
+  }
+
+  // updateSO(item) {
+  //   // alert('test save function');
+  //   alert('Sales order will be updated');
+  //   // console.log('coy ' + item.company);
+  //   const date = new Date();
+
+  //   const sodata = {
+  //     SalesOrderId: this.salesorderid,
+  //     Customer: item.customer[0],
+  //     OnlineOrderFlag: item.Flag,
+  //     Comment: item.comment,
+  //     ModifiedDate: date,
+  //     Fulfilled: false,
+  //   };
+  //   console.log(sodata);
+  //   //  debugger
+           
+  //   this.salesreportservice.update(this.salesorderid, sodata)
+  //     // console.log('update so' + this.orderHeader.SalesOrderID)
+  // }
+
+  fullfillSO(item) {
+      // alert('test save function');
+      alert('Sales order will be fullfilled');
+      this.salesOrderUpdate(item, true)
+  }
 
   // on customer change
   onselectedcustomer(data) {

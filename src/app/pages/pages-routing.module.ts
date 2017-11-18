@@ -35,6 +35,9 @@ const routes: Routes = [{
     path: 'product',
     loadChildren: './product/product.module#ProductModule',
   }, {
+    path: 'customer',
+    loadChildren: './customer/customer.module#CustomerModule',
+  }, {    
     path: 'sales',
     loadChildren: './sales/sales.module#SalesModule',
   }, {
