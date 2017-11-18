@@ -13,11 +13,16 @@
       <div class="col-lg-6">
 
         <div class="form-group">
-          <label for="supplierid">Supplier ID</label>
-          <input #supplierid="ngModel" [(ngModel)]="inventory.SupplierId" name="supplierid" id="supplierid" type="number" class="form-control" required>
-          <!-- <div class="alert alert-danger" *ngIf="SupplierId.touched && PONumber.invalid">
-            Supplier ID is required.
-          </div> -->
+          <label for="supplierid">Supplier</label>
+          <select #supplierid="ngModel" [(ngModel)]="inventory.SupplierId"  name="supplierid" id="supplierid" class="form-control" required>
+              <option value=""></option>
+              <option *ngFor="let s of supplier$" [value]="s.SupplierID">
+                {{ s.CompanyName }}
+              </option>
+          </select>
+          <div class="alert alert-danger" *ngIf="supplierid.touched && supplierid.invalid">
+            Supplier is required.
+          </div>
         </div>        
 <!-- 
         <div class="form-group">
@@ -45,10 +50,13 @@
 
         <div class="form-group">
           <label for="brand">Brand</label>
-          <input #brand="ngModel" [(ngModel)]="inventory.Brand" name="brand" id="brand" type="text" class="form-control" required>
-          <!-- <div class="alert alert-danger" *ngIf="Brand.touched && Brand.invalid">
-            Brand is required.
-          </div> -->
+          <select #brand="ngModel" [(ngModel)]="inventory.Brand"  name="brand" id="brand" class="form-control" required>
+              <option value=""></option>
+              <option *ngFor="let s of brand$" [value]="s.id">
+                {{ s.BrandTitle }}
+              </option>
+          </select>
+          <div class="alert alert-danger" *ngIf="brand.touched && brand.invalid"></div>
         </div>        
 
         <div class="form-group">
@@ -108,7 +116,15 @@
             <div class="col-sm-6">
               <div class="form-group">
                 <label for="uom">UOM</label>
-                <input #uom="ngModel" [(ngModel)]="inventory.UOM" name="uom" id="uom" type="text" class="form-control" required>
+                <select #uom="ngModel" [(ngModel)]="inventory.UOM" name="uom" id="uom" type="text" class="form-control" required>
+                    <option>Bag</option>
+                    <option>Bottle</option>
+                    <option>Box</option>
+                    <option>Gallon</option>
+                    <option>Kilo</option>
+                    <option>Roll</option>
+                    <option>Sack</option>
+                  </select>
                 <!-- <div class="alert alert-danger" *ngIf="UOM.touched && UOM.invalid">
                   UOM is required.
                 </div> -->

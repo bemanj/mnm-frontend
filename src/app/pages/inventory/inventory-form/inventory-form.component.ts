@@ -1,9 +1,16 @@
-import { ActivatedRoute } from '@angular/router';
-import { ProductList } from '../../../@core/models/product-lsit';
-import { ProductService } from '../../../@core/data/services/product/product.service';
+import 'rxjs/add/operator/take';
+
 import { Component, OnInit } from '@angular/core';
-import { InventoryService } from '../../../@core/data/services/inventory/inventory.service';
+import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
+
+import { InventoryService } from '../../../@core/data/services/inventory/inventory.service';
+import { ProductService } from '../../../@core/data/services/product/product.service';
+import { SupplierService } from '../../../@core/data/services/supplier/supplier.service';
+import { BrandList } from '../../../@core/models/brand-list';
+import { ProductList } from '../../../@core/models/product-list';
+import { BrandService } from './../../../@core/data/services/brand/brand.service';
+import { SupplierList } from './../../../@core/models/supplier-list';
 
 @Component({
   selector: 'ngx-inventory-form',
@@ -14,10 +21,14 @@ export class InventoryFormComponent implements OnInit {
   inventories$;
   inventory = {}; 
   product$: ProductList[];
+  supplier$: SupplierList[];
+  brand$: BrandList[];
   id;
   momentValue;
 
   constructor(private productservice: ProductService,
+              private supplierService: SupplierService,
+              private brandService: BrandService,
               private route: ActivatedRoute,
               private router: Router, 
               private inventoryService: InventoryService) { }
@@ -77,12 +88,24 @@ export class InventoryFormComponent implements OnInit {
               
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id');
+    // debugger
     if (this.id) this.inventoryService.get(this.id).take(1).subscribe(p => this.inventory = p);
 
     this.productservice.getAll()
     .subscribe(s => {
       this.product$ = s;
     });
+
+    this.supplierService.getAll()
+    .subscribe(s => {
+      this.supplier$ = s;
+    });
+
+    this.brandService.getAll()
+    .subscribe(s => {
+      this.brand$ = s;
+    });
+
   }
 
 }

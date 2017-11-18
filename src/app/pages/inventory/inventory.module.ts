@@ -7,6 +7,8 @@ import { InventoryService } from '../../@core/data/services/inventory/inventory.
 import { ThemeModule } from '../../@theme/theme.module';
 import { SmartTableService } from './../../@core/data/smart-table.service';
 import { InventoryRoutingModule, routedComponents } from './inventory-routing.module';
+import { SupplierService } from '../../@core/data/services/supplier/supplier.service';
+import { BrandService } from '../../@core/data/services/brand/brand.service';
 
 @NgModule({
   imports: [
@@ -21,6 +23,8 @@ import { InventoryRoutingModule, routedComponents } from './inventory-routing.mo
   providers: [
     SmartTableService,
     InventoryService,
+    SupplierService,
+    BrandService,
     ProductService
   ]
 })

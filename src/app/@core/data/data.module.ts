@@ -1,4 +1,3 @@
-import { SharedOrderService } from './services/shared/sales/shared-order.service';
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 
@@ -14,9 +13,12 @@ import { ProductCategoryService } from './services/product/category/product-cate
 import { DetailService } from './services/sales/order/detail.service';
 import { HeaderService } from './services/sales/order/header.service';
 import { SalesReportService } from './services/sales/sales-report.service';
+import { SharedOrderService } from './services/shared/sales/shared-order.service';
+import { SupplierService } from './services/supplier/supplier.service';
 import { SmartTableService } from './smart-table.service';
 import { StateService } from './state.service';
 import { UserService } from './users.service';
+import { BrandService } from './services/brand/brand.service';
 
 const SERVICES = [
   UserService,
@@ -27,7 +29,9 @@ const SERVICES = [
   ConfigService,
   ProductCategoryService,
   GlobalService,
+  BrandService,
   CustomerService,
+  SupplierService,
   SalesReportService,
   SharedOrderService,
   InventoryService,
