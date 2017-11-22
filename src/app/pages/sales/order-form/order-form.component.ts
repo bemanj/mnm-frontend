@@ -1,3 +1,4 @@
+import { observable } from 'rxjs/symbol/observable';
 import { GlobalService } from '../../../@core/data/services/global/global.service';
 import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/take';
@@ -70,7 +71,6 @@ export class OrderFormComponent implements OnInit, OnDestroy {
     };
     
     console.log(sodata);
-    //  debugger
             
     this.salesreportservice.update(this.salesorderid, sodata)
       // console.log('update so' + this.orderHeader.SalesOrderID)
@@ -105,8 +105,10 @@ export class OrderFormComponent implements OnInit, OnDestroy {
 
   fullfillSO(item) {
       // alert('test save function');
+      // debugger
       alert('Sales order will be fullfilled');
       this.salesOrderUpdate(item, true)
+      this.router.navigate(['/pages/sales/print', this.salesorderid]);
   }
 
   // on customer change
@@ -118,9 +120,9 @@ export class OrderFormComponent implements OnInit, OnDestroy {
     }
   }
 
-  print(id) {
+  print() {
     // console.log(id);
-    this.router.navigate(['/pages/sales/print', id]);
+    this.router.navigate(['/pages/sales/print', this.salesorderid]);
   }
   ngOnDestroy() {
     // unsubscribe to ensure no memory leaks

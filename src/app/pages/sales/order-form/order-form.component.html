@@ -108,9 +108,9 @@
   <div class="col-md-12">
   <nb-card>
     <nb-card-body>
-      <button type="button" class="btn btn-primary btn-tn">Complete & Print Order</button>    
+      <button type="button" (click)="fullfillSO(f.value)" class="btn btn-primary btn-tn">Complete & Print Order</button>
       <span>-</span>
-      <button type="button" (click)="print(salesorderid)" class="btn btn-primary btn-tn">Print Preview</button>    
+      <button type="button" (click)="print()" class="btn btn-primary btn-tn">Print Preview</button>    
     </nb-card-body>
   </nb-card>
   </div>
