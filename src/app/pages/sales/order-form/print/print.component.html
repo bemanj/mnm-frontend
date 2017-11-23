@@ -39,7 +39,7 @@
       </tr>
   <tr>
     <td  colspan="6">
-            <table  class="orders" style="height:710px; width:850px;" >
+            <table  class="orders" style="height:690px; width:850px;" >
                     <tr style="height: 1px; line-height: 1px;">
                         <!-- total width: 850-->
                         <td style="width:10%;" ></td>
@@ -79,7 +79,7 @@
                     <tr class="fixheight">
                         <td colspan="2"></td>
                         <td class="txtright"><b>Zero Rated Sales :</b></td>
-                        <td class="txtright"><b>P 0.00</b></td>  <!-- {{ orderHeader.SubTotal |  number:'1.2' }} -->
+                        <td class="txtright"><b>P {{ orderHeader.TaxFreeAmt |  number:'1.2' }}</b></td>
                         <td></td>
                         <td colspan="3" class="txtright"><b>Total Sales(VAT Inclusive) :</b></td>
                         <td class="txtright"><b>P {{ orderHeader.SubTotal |  number:'1.2' }}</b></td>

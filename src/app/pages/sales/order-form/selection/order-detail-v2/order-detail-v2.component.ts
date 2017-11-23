@@ -65,6 +65,7 @@ export class OrderDetailV2Component implements OnInit, OnDestroy, OnChanges {
 
     const order = {
       SalesDetailsId: item.SODetailsID,
+      SalesOrderID: this.soid,
       Discount: item.Discount,
       TotalAmount: totalAmount
     };
