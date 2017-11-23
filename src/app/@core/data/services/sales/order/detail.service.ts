@@ -18,7 +18,7 @@ export class DetailService {
 
   create(body) {
     console.log(body);
-    return this.http.post(this._url + 'SalesOrderDetails', body)
+    return this.http.post(this._url + 'SalesOrderDetails/', body)
     .do(this.logResponse)
     .map((res: Response) => res.json());
   }

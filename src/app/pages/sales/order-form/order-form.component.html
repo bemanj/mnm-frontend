@@ -2,10 +2,27 @@
 <div class="row">
     <div class="col-md-12">
       <nb-card class="inline-form-card">
+
         <nb-card-header>
-          Sales Order Number: {{ salesorderid }}
-          <button (click)="backtoSO()" type="button" id="backtoSO" class="btn btn-primary">back</button> 
-          {{ soHeader.Fulfilled }}
+          <div class="row show-grid">
+        
+            <div class="col-md-4">
+              <div>Sales Order Number: {{ salesorderid }}</div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                  {{ soHeader.Fulfilled }}
+                  <nb-checkbox #addtax="ngModel" [(ngModel)]="soHeader.ComputeTax" name="addtax" id="addtax">Add Tax</nb-checkbox>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div><button (click)="backtoSO()" type="button" id="backtoSO" class="btn btn-primary">back</button></div>
+            </div>
+          </div>
+          
+          
+          
+        
       </nb-card-header>
       </nb-card>
     </div>
@@ -16,7 +33,7 @@
     <nb-card>
       <nb-card-header>
         Select Customer
-        <!-- <button type="button" class="btn btn-primary btn-tn">Create Customer</button> -->
+        <!-- <button type="button" class="btn btn-primary btn-tn">Create Customer</button> [value]="true" -->
       </nb-card-header>
         <nb-card-body>
           <div class="input-group">
@@ -66,8 +83,16 @@
     <div class="col-md-12">
         <nb-card>
             <nb-card-header>
-              Sales Order Info
-              <button [disabled]="!f.valid" type="submit" id="updateso" class="btn btn-primary">update sales order</button>
+              
+                <div class="row show-grid">
+                    <div class="col-md-6">
+                      <div>Sales Order Info</div>
+                    </div>
+                    <div class="col-md-6">
+                      <div><button [disabled]="!f.valid" type="submit" id="updateso" class="btn btn-primary">update sales order</button></div>
+                    </div>
+                </div>
+              
             </nb-card-header>
             <nb-card-body>
               <div class="col-sm-12 input-group">
@@ -93,13 +118,13 @@
         <nb-card-header>Product selection</nb-card-header>
         <nb-card-body>
             <!-- <ngx-select-product></ngx-select-product> -->
-            <ngx-select-product-v2 [soid]="salesorderid"></ngx-select-product-v2>
+            <ngx-select-product-v2 [soid]="salesorderid" [addtax]="addtax"></ngx-select-product-v2>
         </nb-card-body>
       </nb-card>
       <nb-card>
         <nb-card-header>Orders</nb-card-header>
         <nb-card-body>
-          <ngx-order-detail-v2 [soid]="salesorderid"></ngx-order-detail-v2>
+          <ngx-order-detail-v2 [soid]="salesorderid" [addtax]="addtax"></ngx-order-detail-v2>
         </nb-card-body>
       </nb-card>
     </div>

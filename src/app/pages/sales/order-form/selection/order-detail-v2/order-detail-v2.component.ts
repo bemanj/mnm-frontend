@@ -23,6 +23,7 @@ export class OrderDetailV2Component implements OnInit, OnDestroy, OnChanges {
   @Input('master') masterName: string;
   @Input('soid') soid: string;
   @Input('salesorder') salesorder: SalesOrder[] = [];
+  @Input('addtax') addtax: boolean;
   message: any;
 
   constructor(private orderdetailService: DetailService,

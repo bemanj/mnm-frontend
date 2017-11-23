@@ -24,6 +24,7 @@ export class SelectProductV2Component implements OnInit {
   data;
   @Input('master') masterName: string;
   @Input('soid') soid: string;
+  @Input('addtax') addtax: boolean;
   postData$;
   message: string;
 
@@ -70,6 +71,7 @@ export class SelectProductV2Component implements OnInit {
           , TotalAmount: totalAmount
         }
         // add to orders
+        // debugger
         this.orderdetailService.create(postdata).subscribe(data => { 
           this.postData$ = data
           this.fetchOrder(this.soid);

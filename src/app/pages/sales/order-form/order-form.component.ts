@@ -17,6 +17,7 @@ import { CustomerList } from './../../../@core/models/customer';
 })
 export class OrderFormComponent implements OnInit, OnDestroy {
   salesorderid;
+  // addtax;
   customer$: CustomerList[];
   customerinfo = {};
   // item = {};
@@ -68,10 +69,11 @@ export class OrderFormComponent implements OnInit, OnDestroy {
       Comment: item.comment,
       ModifiedDate: date,
       Fulfilled: isFullfilled,
+      ComputeTax: item.addtax,
     };
     
     console.log(sodata);
-            
+            // debugger
     this.salesreportservice.update(this.salesorderid, sodata)
       // console.log('update so' + this.orderHeader.SalesOrderID)
   }
@@ -79,6 +81,7 @@ export class OrderFormComponent implements OnInit, OnDestroy {
   updateSO(item) {
     // alert('test save function');
     alert('Sales order will be updated');
+    // debugger
     this.salesOrderUpdate(item, false)
   }
 
