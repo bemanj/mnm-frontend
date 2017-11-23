@@ -29,6 +29,8 @@ export class SalesReportService {
     .subscribe();
   }
 
+
+
   // sales orders
   getAllSO() {
          return this.http.get(this._url + 'SalesOrderHeaders/')
@@ -54,6 +56,16 @@ getTotalSalesOfTheDay() {
    .do(this.logResponse)
    .map((res: Response) => res.json());
   }
+
+  // sales order functions
+  // api/SalesOrderFunctions/{id}
+  // completeSo(soid) {
+  //   // debugger
+  //   this.http.put(this._url + 'SalesOrderFunctions/' + soid, '')
+  //   .do(this.logResponse)
+  //   .map((res: Response) => res.json())
+  //   .subscribe();
+  // }
 
   private logResponse(res: Response) {
     console.log(res);
