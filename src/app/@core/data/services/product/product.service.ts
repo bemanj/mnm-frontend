@@ -45,7 +45,7 @@ export class ProductService {
   }
 
   update(pid, pbody) {
-    this.http.put(this._url + 'ProductOnes/' + pid, pbody)
+    this.http.put(this._url + 'ProductList/' + pid, pbody)
     .subscribe((res: Response) => res.json());
   }
   

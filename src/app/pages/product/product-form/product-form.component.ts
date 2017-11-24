@@ -46,11 +46,12 @@ export class ProductFormComponent implements OnInit {
       };
 // debugger
       const updatedproduct = {
-        ProductId: this.id,
+        // ProductId: this.id,
         CategoryID: p.category,
         ProductTitle: p.ProductTitle,
         ReorderLevel: p.ReorderLevel,
-        Discontinued: p.Discontinued
+        Discontinued: p.Discontinued,
+        isTaxFree: p.taxfree
       };
 
       // console.log(newproduct);
@@ -68,6 +69,14 @@ export class ProductFormComponent implements OnInit {
     back() {
       // this.router.navigate(['/sales-order', id]);
       history.back()
+    }
+
+    delete() {
+      var r = confirm("Product will be deleted");
+      if (r == true) {
+        this.productservice.delete(this.id);
+        this.back();
+      } 
     }
 
     ngOnInit() {
