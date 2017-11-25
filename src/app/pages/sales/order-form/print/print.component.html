@@ -1,11 +1,24 @@
 <nb-card>
-    <nb-card-header>
-      <div style="height:80px">
-        <button (click)="backtoSO(orderHeader.SalesOrderID)" id="backtoSO" class="btn btn-primary">Back to SO</button> 
-        <button class="print"  (click)="print('printSectionId')" class="btn btn-primary">Print</button>
-      </div>
-</nb-card-header>
-
+    <div class="row">
+            <nb-card-header>
+                <div class="row show-grid">
+                    <div class="col-md-4">
+                        <div>
+                            <button class="print"  (click)="print('printSectionId')" class="btn btn-primary">Print</button>
+                        </div>
+                    </div>
+                    <div class="col-md-4 offset-md-4">
+                        <div>
+                            <button (click)="backtoSO(orderHeader.SalesOrderID)" id="backtoSO" class="btn btn-primary">Back</button> 
+                        </div>
+                    </div>
+                </div>
+            </nb-card-header>
+    </div>
+</nb-card>
+    
+    
+<nb-card>
 <nb-card-body>
 <div class="row" print-section id="printSectionId">
   <table style="width:850px;">

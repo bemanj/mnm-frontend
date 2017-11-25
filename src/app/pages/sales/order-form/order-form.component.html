@@ -19,11 +19,7 @@
               <div><button (click)="backtoSO()" type="button" id="backtoSO" class="btn btn-primary">back</button></div>
             </div>
           </div>
-          
-          
-          
-        
-      </nb-card-header>
+        </nb-card-header>
       </nb-card>
     </div>
   </div>
@@ -83,13 +79,13 @@
     <div class="col-md-12">
         <nb-card>
             <nb-card-header>
-              
+
                 <div class="row show-grid">
                     <div class="col-md-6">
                       <div>Sales Order Info</div>
                     </div>
                     <div class="col-md-6">
-                      <div><button [disabled]="!f.valid" type="submit" id="updateso" class="btn btn-primary">update sales order</button></div>
+                      <div><button [disabled]="!f.valid" type="submit" id="updateso" class="btn btn-primary btn-tn">update sales order</button></div>
                     </div>
                 </div>
               
@@ -133,9 +129,9 @@
   <div class="col-md-12">
   <nb-card>
     <nb-card-body>
-      <button type="button" (click)="fullfillSO(f.value)" class="btn btn-primary btn-tn">Complete & Print Order</button>
+      <button type="button" (click)="fullfillSO(f.value)" class="btn btn-primary">Complete & Print Order</button>
       <span>-</span>
-      <button type="button" (click)="print()" class="btn btn-primary btn-tn">Print Preview</button>    
+      <button type="button" (click)="print()" class="btn btn-primary">Print Preview</button>    
     </nb-card-body>
   </nb-card>
   </div>

@@ -11,7 +11,6 @@
     <div class="row">
       
       <div class="col-lg-6">
-;
         <div class="form-group">
           <label for="supplierid">Supplier</label>
           <select #supplierid="ngModel" [(ngModel)]="inventory.SupplierId"  name="supplierid" id="supplierid" class="form-control" required>
@@ -147,7 +146,7 @@
             <div class="col-sm-6">
                 <div class="form-group">
                     <label for="stockid">Stock Number</label>
-                    <input #stockId="ngModel" [(ngModel)]="inventory.StockId" name="stockid" id="stockirxd" type="number" class="form-control" required>
+                    <input #stockId="ngModel" [(ngModel)]="inventory.StockId" name="stockid" id="stockirxd" type="number" class="form-control" readonly>
                     <!-- <div class="alert alert-danger" *ngIf="StockId.touched && StockId.invalid">
                       Stock Number is required.
                     </div> -->
@@ -182,14 +181,17 @@
     </div>
     <div class="row">
       <div class="col-sm-12">
+          <button type="button" (click)="back()" id="back" class="btn btn-primary">Back</button> 
+          <span>-</span>
           <button type="submit"[disabled]="!f.valid" class="btn btn-primary">Save</button>
+          <span>-</span>
+          <button *ngIf="id" type="button" (click)="delete()" class="btn btn-danger">Delete</button>
       </div>
     </div>
   </form>      
   </nb-card-body>
-  <nb-card-footer>
-      <button *ngIf="id" type="button" (click)="delete()" class="btn btn-danger">Delete</button>
-  </nb-card-footer>
+  <!-- <nb-card-footer>
+  </nb-card-footer> -->
 
 
 </nb-card>

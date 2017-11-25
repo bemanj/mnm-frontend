@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
@@ -22,16 +23,23 @@ export class SalesOrderComponent  implements OnInit{
     actions: false,
     columns: {
       SalesOrderID: {
-        title: 'SO ID',
+        title: 'Sales Order Number',
         type: 'number',
       },
       CompanyName: {
-        title: 'Company',
+        title: 'Customer',
         type: 'string',
       },
-      OrderDate: {
-        title: 'Order Date',
-        type: 'date',
+      CreatedDate: {
+        title: 'Date Created',
+        valuePrepareFunction: (date) => {
+          var raw = new Date(date);
+
+          var formatted = new DatePipe('en-EN').transform(raw, 'dd MMMM yyyy');
+          // var formatted = new DatePipe('en-EN').transform(raw, 'dd MMM yyyy HH:mm:ss');
+          return formatted;
+        }
+        // type: 'date',
       },
       TotalDue: {
         title: 'Total Due',

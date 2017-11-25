@@ -50,31 +50,27 @@ export class InventoryFormComponent implements OnInit {
         , DateDelivered: date
         , DateDisposed: date
         , ModifiedDate: date
-        // , DateDelivered: date
-        // , DateDisposed: date
-        // , ModifiedDate: date
-        , PutAwayLocation: 1
+        , PutAwayLocation: inventory.PutAwayLocation
       }
 
       var invput = {
-        id: this.id
-        , PONumber: inventory.ponumber
-        , StockId: inventory.stockid
-        , SupplierId: inventory.supplierid
+        // id: this.id
+         SupplierId: inventory.supplierid
         , ProductId: inventory.productid
         , Brand: inventory.brand
         , Article: inventory.article
-        , UOM: inventory.uom
-        , Quantity: inventory.quantity
         , Price: inventory.price
+        , Quantity: inventory.quantity
         , AcquisitionPrice: inventory.acquisitionprice
+        , UOM: inventory.uom
+        , PONumber: inventory.ponumber
+        , PutAwayLocation: inventory.PutAwayLocation
         , DateDelivered: date
         , DateDisposed: date
-        , ModifiedDate: date
+        // , ModifiedDate: date
         // , DateDelivered: date
         // , DateDisposed: date
         // , ModifiedDate: date
-        , PutAwayLocation: 1
       }
 
       // this.inventoryService.create(invdata).subscribe(data => this.inventories$ = data);;
@@ -86,6 +82,19 @@ export class InventoryFormComponent implements OnInit {
       // console.log(this.soNumber$);
     }
               
+    delete() {
+      var r = confirm("Inventory will be deleted");
+      if (r == true) {
+        this.inventoryService.delete(this.id);
+        this.back();
+      } 
+    }
+
+    back() {
+      // this.router.navigate(['/sales-order', id]);
+      history.back()
+    }
+
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id');
     // debugger

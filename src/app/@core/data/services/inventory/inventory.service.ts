@@ -24,13 +24,13 @@ export class InventoryService {
   }
 
     
-  update(inventoryId, inventory) { 
-    this.http.put(this._url + 'inventorystocks/' + inventoryId,inventory)
+  update(id, body) { 
+    this.http.put(this._url + 'inventorystocks/' + id, body)
     .subscribe((res: Response) => res.json());;
   }
 
-  get(inventoryId) { 
-    return this.http.get(this._url + 'inventorystocks/' + inventoryId)
+  get(id) { 
+    return this.http.get(this._url + 'inventorystocks/' + id)
     .do(this.logResponse)
     .map((res: Response) => res.json());
   }
@@ -41,6 +41,10 @@ export class InventoryService {
       .map((res: Response) => res.json());
   }
 
+  delete(id) {
+    this.http.delete(this._url + 'inventorystocks/' + id)
+    .subscribe((res: Response) => res.json());
+  }
 
   private logResponse(res: Response) {
     console.log(res);

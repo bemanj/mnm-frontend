@@ -66,6 +66,7 @@ export class OrderFormComponent implements OnInit, OnDestroy {
       SalesOrderId: this.salesorderid,
       Customer: item.customer[0],
       OnlineOrderFlag: item.Flag,
+      // OrderDate: date,
       Comment: item.comment,
       ModifiedDate: date,
       Fulfilled: isFullfilled,
