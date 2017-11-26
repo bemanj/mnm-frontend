@@ -14,6 +14,8 @@ export class EchartsBarAnimationComponent implements AfterViewInit, OnDestroy {
   constructor(private theme: NbThemeService) {
   }
 
+  // https://swimlane.gitbooks.io/ngx-charts/content/charts/bar-vertical.html
+
   ngAfterViewInit() {
     this.themeSubscription = this.theme.getJsTheme().subscribe(config => {
       const xAxisData = [];

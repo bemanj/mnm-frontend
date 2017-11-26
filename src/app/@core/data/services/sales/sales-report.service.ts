@@ -38,6 +38,12 @@ export class SalesReportService {
         .map((res: Response) => res.json());
   }
 
+  getFulfilledSO() {
+    return this.http.get(this._url + 'FulfilledReportSalesOrder/1?daterange=get')
+    .do(this.logResponse)
+    .map((res: Response) => res.json());
+  }
+
   // sales orders
   getfSO(id) {
     return this.http.get(this._url + 'SalesOrderHeaders/' + id)
@@ -51,11 +57,18 @@ getTotalSalesOfTheDay() {
  .map((res: Response) => res.json());
 }
 
-  getAllTotalSales() {
-    return this.http.get(this._url + 'SalesReport/')
-   .do(this.logResponse)
-   .map((res: Response) => res.json());
-  }
+getTotalSalesByDateRange(value) {
+  // FulfilledReportSalesOrder?daterange={daterange}
+  return this.http.get(this._url + 'FulfilledReportSalesOrder?daterange=' + value)
+ .do(this.logResponse)
+ .map((res: Response) => res.json());
+}
+
+getAllTotalSales() {
+  return this.http.get(this._url + 'SalesReport/')
+  .do(this.logResponse)
+  .map((res: Response) => res.json());
+}
 
   // sales order functions
   // api/SalesOrderFunctions/{id}

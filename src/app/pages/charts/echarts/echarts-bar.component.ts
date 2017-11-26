@@ -1,5 +1,8 @@
-import { AfterViewInit, Component, OnDestroy } from '@angular/core';
+import { observable } from 'rxjs/symbol/observable';
+import { SalesReportService } from '../../../@core/data/services/sales/sales-report.service';
+import { AfterViewInit, AfterViewChecked, Component, OnDestroy, OnInit } from '@angular/core';
 import { NbThemeService } from '@nebular/theme';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'ngx-echarts-bar',
@@ -7,11 +10,24 @@ import { NbThemeService } from '@nebular/theme';
     <div echarts [options]="options" class="echart"></div>
   `,
 })
-export class EchartsBarComponent implements AfterViewInit, OnDestroy {
+export class EchartsBarComponent implements AfterViewInit, AfterViewChecked, OnDestroy, OnInit {
   options: any = {};
   themeSubscription: any;
+  day1: number = 1000;
+  day2: number = 1000;
+  day3;
+  day4;
+  day5;
+  day6;
+  day7;
 
-  constructor(private theme: NbThemeService) {
+  constructor(private theme: NbThemeService
+              , private salesreportservice : SalesReportService) { 
+             
+               }
+
+  ngAfterViewChecked() {
+    // this.loadChart()
   }
 
   ngAfterViewInit() {
@@ -38,7 +54,14 @@ export class EchartsBarComponent implements AfterViewInit, OnDestroy {
         xAxis: [
           {
             type: 'category',
-            data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+            data: ['Today'
+                  , 'Yesterday'
+                  , 'Day 3'
+                  , 'Day 4'
+                  , 'Day 5'
+                  , 'Day 6'
+                  , 'Day 7'
+          ],
             axisTick: {
               alignWithLabel: true,
             },
@@ -76,14 +99,49 @@ export class EchartsBarComponent implements AfterViewInit, OnDestroy {
         ],
         series: [
           {
-            name: 'Score',
+            name: 'Total',
             type: 'bar',
             barWidth: '60%',
-            data: [45900, 32452, 50200, 21334, 20450, 36330, 68500],
+            data: [
+              56845
+              , 48752
+              , 50200
+              , 21334
+              , 20450
+              , 36330
+              , 68500],
           },
         ],
       };
     });
+  }
+
+  ngOnInit() {
+
+    this.d1();
+    this.d2();
+    // console.log(this.getTotalSalesByDateRange('day1'));
+    // console.log(this.sd('day1'));
+  }
+
+  d1() {
+    // debugger
+    this.salesreportservice.getTotalSalesByDateRange('day1')
+    .subscribe(data => {
+      this.day1 = data
+      console.log(this.day1)
+    });
+    
+  }
+
+  d2() {
+    // debugger
+    this.salesreportservice.getTotalSalesByDateRange('day2')
+    .subscribe(data => {
+      this.day2 = data
+      console.log(this.day2)
+    });
+    
   }
 
   ngOnDestroy(): void {

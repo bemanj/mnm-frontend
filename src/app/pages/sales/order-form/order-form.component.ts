@@ -64,7 +64,7 @@ export class OrderFormComponent implements OnInit, OnDestroy {
 
     const sodata = {
       SalesOrderId: this.salesorderid,
-      Customer: item.customer[0],
+      Customer: item.customerid, // item.customer[0],
       OnlineOrderFlag: item.Flag,
       // OrderDate: date,
       Comment: item.comment,

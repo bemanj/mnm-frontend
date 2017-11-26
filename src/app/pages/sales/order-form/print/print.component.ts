@@ -119,7 +119,7 @@ export class PrintComponent implements OnInit {
     // return data of customer
     if (data) {
       // debugger
-      this.customerservice.getById(data)
+      this.customerservice.get(data)
         .subscribe(c => {
           this.customerinfo = c
         });

@@ -14,7 +14,7 @@ import { Component, OnInit, Input, NgModule } from '@angular/core';
 export class SalesReportComponent implements OnInit  {
   categories$;
   totalSales;
-
+  reporttype;
   orderHeader = {};
   data = '';
   postStatus : any;
@@ -31,14 +31,6 @@ export class SalesReportComponent implements OnInit  {
     private router: Router) { 
     // this.getCategories();
     // this.getTotalSales();
-
-    this.subscription = this.salesreportservice.getAllSO()
-    .subscribe(salesReport => {
-      this.salesReport = salesReport;
-      this.initializeTable(salesReport);
-    });
-    
-    this.getTotalSales();    
   } 
 
   private initializeTable(sales: SalesReport[]) {
@@ -69,61 +61,34 @@ export class SalesReportComponent implements OnInit  {
       .then(items => this.items = items);    
   }
 
-  // filter(query: string) { 
-  //   let filteredSales = (query) ?
-  //     this.salesReport.filter(p => p.salesOrderNumber..includes(query)) :
-  //     this.salesReport;
-
-  //   this.initializeTable(filteredSales);
-  // }
-
-  getTotalSales() {
-    this.salesreportservice.getAllTotalSales().subscribe(data => this.totalSales = data);
+  onselectedcustomer(value) {
+    console.log(value);
   }
-
  
+  getTotalSalesByDateRange() {
+    this.salesreportservice.getTotalSalesByDateRange('day1')
+    .subscribe(data => {
+      console.log(data);
+      // this.totalSales = data
+    });
+  }
 
   save(orderHeader) {
     this.router.navigate(['/sales-order']);
   } 
 
-  // save(orderHeader) {
-    
-  //       this.router.navigate(['/inventory-list']);
-  //       var date = new Date();
-  //       var data = {
-  //         //SalesOrderID: 1
-  //         OrderDate: date,
-  //         //, OnlineOrderFlag: true
-  //         //, SalesOrderNumber: 'SO1'
-  //         SubTotal: 0,
-  //         TaxAmt: 0,
-  //         Freight: 0,
-  //         //TotalDue: soTotalDue,
-  //         Comment: 0,
-  //         ModifiedDate: date
-  //       }
-  //       console.log(data);
-  //       this.salesreportservice.create(data);
-  //     } 
-      
-  // var data = {
-  //   //SalesOrderID: 1
-  //   OrderDate: date,
-  //   //, OnlineOrderFlag: true
-  //   //, SalesOrderNumber: 'SO1'
-  //   SubTotal: orderHeader.soSubTotal,
-  //   TaxAmt: orderHeader.soTaxAmt,
-  //   Freight: orderHeader.soFreight,
-  //   //TotalDue: soTotalDue,
-  //   Comment: orderHeader.soComment,
-  //   ModifiedDate: date
-  // }
     getSalesReport() {
       
     }
 
      ngOnInit() {
+      this.subscription = this.salesreportservice.getFulfilledSO()
+      .subscribe(salesReport => {
+        this.salesReport = salesReport;
+        this.initializeTable(salesReport);
+      });
+
+      this.getTotalSalesByDateRange()
     }
 
     ngOnDestroy(){

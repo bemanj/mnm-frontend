@@ -11,7 +11,7 @@
             </div>
             <div class="col-md-4">
               <div class="form-group">
-                  {{ soHeader.Fulfilled }}
+                  <!-- {{ soHeader.Fulfilled }} -->
                   <nb-checkbox #addtax="ngModel" [(ngModel)]="soHeader.ComputeTax" name="addtax" id="addtax">Add Tax</nb-checkbox>
               </div>
             </div>
@@ -54,6 +54,7 @@
             <!-- <button type="button" class="btn btn-primary btn-tn">Save </button> -->
           </nb-card-header>
           <nb-card-body>
+              <input #customerid="ngModel" [(ngModel)]="customerinfo.CustomerID" name="customerid" id="customerid" type="text" placeholder="Customer" class="form-control" readonly/>
             <div class="input-group">
               <input #company="ngModel" [(ngModel)]="customerinfo.CompanyName" name="company" id="company" type="text" placeholder="Company" class="form-control"/>
             </div>
@@ -70,7 +71,7 @@
               </div>
               <div class="input-group input-group-sm">
                   <input #phone="ngModel" [(ngModel)]="customerinfo.Phone" name="phone" id="phone" type="text" placeholder="Contact Number" class="form-control"/>
-                </div>
+              </div>
           </nb-card-body>
         </nb-card>
   </div>
@@ -81,10 +82,20 @@
             <nb-card-header>
 
                 <div class="row show-grid">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                       <div>Sales Order Info</div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
+                        <select #Flag="ngModel" [(ngModel)]="soHeader.OnlineOrderFlag" name="Flag" id="Flag" aria-placeholder="Order flag" class="form-control" required>
+                            <option value=""></option>
+                            <option>Call</option>
+                            <option>Walk In</option>
+                          </select>
+                          <div class="alert alert-danger" *ngIf="Flag.touched && Flag.invalid">
+                            Order Flag is required.
+                          </div>
+                    </div>
+                    <div class="col-md-4">
                       <div><button [disabled]="!f.valid" type="submit" id="updateso" class="btn btn-primary btn-tn">update sales order</button></div>
                     </div>
                 </div>
@@ -94,16 +105,9 @@
               <div class="col-sm-12 input-group">
                 <textarea #comment="ngModel" [(ngModel)]="soHeader.Comment" rows="5" name="comment" id="comment" type="text" placeholder="Comment" class="form-control"></textarea>
               </div>
-              <div class="col-sm-6 input-group">
-                  <select #Flag="ngModel" [(ngModel)]="soHeader.OnlineOrderFlag" name="Flag" id="Flag" aria-placeholder="Order flag" class="form-control" required>
-                    <option value=""></option>
-                    <option>Call</option>
-                    <option>Walk In</option>
-                  </select>
-                  <div class="alert alert-danger" *ngIf="Flag.touched && Flag.invalid">
-                    Order Flag is required.
-                  </div>
-              </div>        
+              <!-- <div class="col-sm-6 input-group">
+                  
+              </div>         -->
             </nb-card-body>
           </nb-card>
     </div>

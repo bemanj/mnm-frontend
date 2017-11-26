@@ -1,0 +1,130 @@
+<form #f="ngForm" (ngSubmit)="save(f.value)">
+<nb-card>
+  <nb-card-header>
+    Customer Info
+  </nb-card-header>
+  <nb-card-body>
+      <div class="row">
+          <div class="col-lg-6">
+
+            <div class="form-group">
+                  <label for="customerid">Customer ID</label>
+                  <input #customerid="ngModel" [(ngModel)]="customerinfo.CustomerID" name="customerid" id="customerid" type="text" placeholder="Customer ID" class="form-control" readonly/>
+              </div>
+              
+              <div class="form-group">
+                  <label for="person">Contact</label>
+                  <input #person="ngModel" [(ngModel)]="customerinfo.ContactName" name="person" id="person" type="text" placeholder="Contact Person" class="form-control" required/>
+                  <div class="alert alert-danger" *ngIf="person.touched && person.invalid">
+                      Contact person is required.
+                  </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="form-group">
+                      <div class="form-group">
+                          <label for="terms">Terms</label>
+                          <input #terms="ngModel" [(ngModel)]="customerinfo.Terms" name="terms" id="terms" type="number" placeholder="Terms" class="form-control" required/>
+                          <div class="alert alert-danger" *ngIf="terms.touched && terms.invalid">
+                              Terms is required.
+                          </div>
+                      </div>
+                  </div>
+                </div>
+
+                <div class="col-sm-6">
+                  <div class="form-group">
+                      <label for="phone">Phone</label>
+                      <input #phone="ngModel" [(ngModel)]="customerinfo.Phone" name="phone" id="phone" type="text" placeholder="Terms" class="form-control" required/>
+                      <div class="alert alert-danger" *ngIf="phone.touched && phone.invalid">
+                          Phone is required.
+                      </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+
+          <div class="col-lg-6">
+              <div class="form-group">
+                  <label for="company">Company</label>
+                  <input #company="ngModel" [(ngModel)]="customerinfo.CompanyName" name="company" id="company" type="text" placeholder="Company" class="form-control" required/>
+                  <div class="alert alert-danger" *ngIf="company.touched && company.invalid">
+                      Company is required.
+                  </div>
+              </div>
+
+              <div class="form-group">
+                  <label for="title">Contact Title</label>
+                  <input #title="ngModel" [(ngModel)]="customerinfo.ContactTitle" name="title" id="title" type="text" placeholder="Contact Title" class="form-control"/>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="form-group">
+                      <label for="fax">Fax</label>
+                      <input #fax="ngModel" [(ngModel)]="customerinfo.Fax" name="fax" id="fax" type="text" placeholder="Fax" class="form-control"/>
+                  </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="postal">Postal Code</label>
+                        <input #postal="ngModel" [(ngModel)]="customerinfo.PostalCode" name="postal" id="postal" type="text" placeholder="Postal Code" class="form-control"/>
+                    </div>
+                </div>
+              </div>
+          </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label for="address">Address</label>
+                <div class="input-group input-group-sm">
+                    <input #address="ngModel" [(ngModel)]="customerinfo.Address" name="address" id="address" type="text" placeholder="Address" class="form-control"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label for="city">City</label>
+                <div class="input-group input-group-sm">
+                    <input #city="ngModel" [(ngModel)]="customerinfo.City" name="city" id="city" type="text" placeholder="City" class="form-control"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label for="region">Region</label>
+                <div class="input-group input-group-sm">
+                    <input #region="ngModel" [(ngModel)]="customerinfo.Region" name="region" id="region" type="text" placeholder="Region" class="form-control"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label for="country">Country</label>
+                <div class="input-group input-group-sm">
+                    <input #country="ngModel" [(ngModel)]="customerinfo.Country" name="country" id="country" type="text" placeholder="Country" class="form-control"/>
+                </div>
+            </div>
+        </div>
+
+      </div>
+
+      <div class="row">
+          <div class="col-sm-12">
+              <button type="button" (click)="back()" id="back" class="btn btn-primary">Back</button> 
+              <span>-</span>
+              <button type="submit"[disabled]="!f.valid" class="btn btn-primary">Save</button>
+              <span>-</span>
+              <button *ngIf="id" type="button" (click)="delete()" class="btn btn-danger">Delete</button>
+          </div>
+      </div>
+  </nb-card-body>
+</nb-card>
+</form>

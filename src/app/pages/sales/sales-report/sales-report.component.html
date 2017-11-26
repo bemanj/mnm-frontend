@@ -1,90 +1,134 @@
-<nb-card>
-  <nb-card-header>Sales Report</nb-card-header>
-    <!-- <h2>Total Sales of the Day: {{ totalSales }}</h2> -->
-    <nb-card-body>
-      <!-- <p>
-        <input 
-          #query
-          (keyup)="filter(query.value)"
-          type="text" class="form-control" placeholder="Search...">
-      </p> -->
-      
-      <data-table
-      [items]="items"
-      [itemCount]="itemCount"
-      (reload)="reloadItems($event)"
-      [rowTooltip]="rowTooltip"
-      (rowDoubleClick)="rowDoubleClick($event)">
-      <data-table-column
-        [property]="'SalesOrderNumber'"  
-        [header]="'SO Number'"
-        [sortable]="true"
-        [resizable]="true"
-      >
-      </data-table-column>
-  
-      <data-table-column
-      [property]="'OrderDate'"  
-      [header]="'Order Date'"
-      [sortable]="true"
-      [resizable]="true"
-    >
-      <ng-template #dataTableCell let-item="item">
-        {{ item.OrderDate | date }}
-      </ng-template>
-    </data-table-column>
-  
-      <data-table-column
-        [property]="'SubTotal'"  
-        [header]="'Sub Total (PHP)'"
-        [sortable]="true"
-        [resizable]="true"
-      >
-        <ng-template #dataTableCell let-item="item">
-          {{ item.SubTotal | currency:'Php':true }}
-        </ng-template>
-      </data-table-column>
-  
-      <data-table-column
-      [property]="'TaxAmt'"  
-      [header]="'Tax Amount (PHP)'"
-      [sortable]="true"
-      [resizable]="true"
-    >
-      <ng-template #dataTableCell let-item="item">
-        {{ item.TaxAmt | currency:'Php':true }}
-      </ng-template>
-    </data-table-column>
-  
-    <data-table-column
-    [property]="'Freight'"  
-    [header]="'Freight (PHP)'"
-    [sortable]="true"
-    [resizable]="true"
-  >
-    <ng-template #dataTableCell let-item="item">
-      {{ item.Freight | currency:'Php':true}}
-    </ng-template>
-  </data-table-column>
-  
-  <data-table-column
-  [property]="'TotalDue'"  
-  [header]="'Total Due (PHP)'"
-  [sortable]="true"
-  [resizable]="true"
-  >
-  <ng-template #dataTableCell let-item="item">
-    {{ item.TotalDue | currency:'Php':true }}
-  </ng-template>
-  </data-table-column>
-      <!--<data-table-column
-        [property]="'$key'"  
-      >
-        <ng-template #dataTableCell let-item="item">
-          <a [routerLink]="['/admin/products/', item.$key]">Edit</a>
-        </ng-template>
-      </data-table-column> -->
-  
-      </data-table>
-  </nb-card-body>
-</nb-card>
+<div class="row">
+    <div class="col-md-12">
+      <nb-card class="inline-form-card">
+          <!-- <nb-card-header>Sales Report</nb-card-header> -->
+        <nb-card-header>
+          <div class="row show-grid">
+        
+            <div class="col-md-4">
+              <div>Sales Report</div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                  <!-- <nb-checkbox #addtax="ngModel" [(ngModel)]="soHeader.ComputeTax" name="addtax" id="addtax">Add Tax</nb-checkbox> -->
+              </div>
+            </div>
+            <div class="col-md-4">
+                <!-- <select #Flag="ngModel" [(ngModel)]="" name="Flag" id="Flag" aria-placeholder="Order flag" class="form-control" required> -->
+                <select #selectedreport="ngModel" [(ngModel)]="reporttype" (change)="onselectedcustomer(selectedreport.value)" name="selectedreport" id="selectedreport" class="form-control" >
+                    <option selected>Fulfilled</option>
+                    <option>Not Settled</option>
+                    <option>Settled</option>
+                </select>
+            </div>
+          </div>
+        </nb-card-header>
+      </nb-card>
+    </div>
+  </div>
+
+  <div class="row">
+      <div class="col-md-12">
+        <nb-card>
+          <!-- <nb-card-header>Sales Report</nb-card-header> -->
+            <!-- <h2>Total Sales of the Day: {{ totalSales }}</h2> -->
+            <nb-card-body>
+              <!-- <p>
+                <input 
+                  #query
+                  (keyup)="filter(query.value)"
+                  type="text" class="form-control" placeholder="Search...">
+              </p> -->
+              
+              <data-table
+              [items]="items"
+              [itemCount]="itemCount"
+              (reload)="reloadItems($event)"
+              [rowTooltip]="rowTooltip"
+              (rowDoubleClick)="rowDoubleClick($event)">
+              <data-table-column
+                [property]="'SalesOrderID'"  
+                [header]="'Sales Order Number'"
+                [sortable]="true"
+                [resizable]="true"
+              >
+              </data-table-column>
+            
+              <data-table-column
+              [property]="'Customer'"  
+              [header]="'Customer'"
+              [sortable]="true"
+              [resizable]="true"
+            >
+            </data-table-column>
+
+              <data-table-column
+              [property]="'OrderDate'"  
+              [header]="'Order Date'"
+              [sortable]="true"
+              [resizable]="true"
+            >
+              <ng-template #dataTableCell let-item="item">
+                {{ item.OrderDate | date }}
+              </ng-template>
+            </data-table-column>
+          
+              <data-table-column
+                [property]="'SubTotal'"  
+                [header]="'Sub Total (PHP)'"
+                [sortable]="true"
+                [resizable]="true"
+                [visible]="false"
+              >
+                <ng-template #dataTableCell let-item="item">
+                  {{ item.SubTotal | currency:'Php':true }}
+                </ng-template>
+              </data-table-column>
+          
+              <data-table-column
+              [property]="'TaxAmt'"  
+              [header]="'Tax Amount (PHP)'"
+              [sortable]="true"
+              [resizable]="true"
+              [visible]="false"
+            >
+              <ng-template #dataTableCell let-item="item">
+                {{ item.TaxAmt | currency:'Php':true }}
+              </ng-template>
+            </data-table-column>
+          
+            <data-table-column
+            [property]="'Freight'"  
+            [header]="'Freight (PHP)'"
+            [sortable]="true"
+            [resizable]="true"
+            [visible]="false"
+          >
+            <ng-template #dataTableCell let-item="item">
+              {{ item.Freight | currency:'Php':true}}
+            </ng-template>
+          </data-table-column>
+          
+          <data-table-column
+          [property]="'TotalDue'"  
+          [header]="'Total Due (PHP)'"
+          [sortable]="true"
+          [resizable]="true"
+          >
+          <ng-template #dataTableCell let-item="item">
+            {{ item.TotalDue | currency:'Php':true }}
+          </ng-template>
+          </data-table-column>
+              <!--<data-table-column
+                [property]="'$key'"  
+              >
+                <ng-template #dataTableCell let-item="item">
+                  <a [routerLink]="['/admin/products/', item.$key]">Edit</a>
+                </ng-template>
+              </data-table-column> -->
+          
+              </data-table>
+          </nb-card-body>
+        </nb-card>
+      </div>
+  </div>
