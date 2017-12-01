@@ -43,6 +43,10 @@ export const MENU_ITEMS: NbMenuItem[] = [
         title: 'Product Category',
         link: '/pages/product/category',
       },
+      {
+        title: 'Product Brand',
+        // link: '/pages/product/category',
+      },
     ],
   },
   {
