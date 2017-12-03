@@ -29,7 +29,7 @@ export class BrandService {
     .subscribe((res: Response) => res.json());;
   }
 
-  get(id) { 
+  getById(id) { 
     return this.http.get(this._url + 'brands/' + id)
     .do(this.logResponse)
     .map((res: Response) => res.json());
@@ -41,6 +41,10 @@ export class BrandService {
       .map((res: Response) => res.json());
   }
 
+  delete(pid) {
+    this.http.delete(this._url + 'brands/' + pid)
+    .subscribe((res: Response) => res.json());
+  }
 
   private logResponse(res: Response) {
     console.log(res);

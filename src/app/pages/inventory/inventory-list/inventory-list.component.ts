@@ -39,7 +39,7 @@ export class InventoryListComponent implements OnInit {
           title: 'Supplier',
           type: 'string',
         },
-        Brand: {
+        BrandTitle: {
           title: 'Brand',
           type: 'string',
         },

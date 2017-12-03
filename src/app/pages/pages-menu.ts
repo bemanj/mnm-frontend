@@ -45,7 +45,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
       },
       {
         title: 'Product Brand',
-        // link: '/pages/product/category',
+        link: '/pages/product/brandlist',
       },
     ],
   },
