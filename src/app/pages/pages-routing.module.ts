@@ -28,12 +28,15 @@ const routes: Routes = [{
   }, {
     path: 'inventory',
     loadChildren: './inventory/inventory.module#InventoryModule',
-  },{
+  }, {
     path: 'forms',
     loadChildren: './forms/forms.module#FormsModule',
-  },{
+  }, {
     path: 'product',
     loadChildren: './product/product.module#ProductModule',
+  }, {
+    path: 'supplier',
+    loadChildren: './supplier/supplier.module#SupplierModule',
   }, {
     path: 'customer',
     loadChildren: './customer/customer.module#CustomerModule',

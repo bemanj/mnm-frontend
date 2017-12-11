@@ -1,0 +1,130 @@
+<div class="row">
+  <div class="col-md-12">
+    <nb-card>
+        <nb-card-header>
+            Supplier
+        </nb-card-header>
+      <nb-card-body>
+        <div class="row">
+            <div class="col-md-12">
+              <form #f="ngForm" (ngSubmit)="save(f.value)">
+                  <div class="form-group">
+                      <label for="CompanyName">Company</label>
+                    <input #CompanyName="ngModel" [(ngModel)]="s.CompanyName" name="CompanyName" id="CompanyName" type="text" class="form-control" required>
+                    <div class="alert alert-danger" *ngIf="CompanyName.touched && CompanyName.invalid">
+                      Company name is required.
+                    </div>
+                  </div>        
+                  
+                  <div class="row">
+                      <div class="col-4">
+                        <div class="form-group">
+                          <label for="ContactTitle">Contact Title</label>
+                          <input #ContactTitle="ngModel" [(ngModel)]="s.ContactTitle" name="ContactTitle" id="ContactTitle" type="text" class="form-control" required>
+                          <div class="alert alert-danger" *ngIf="ContactTitle.touched && ContactTitle.invalid">
+                            Contact title is required.
+                          </div>
+                        </div>        
+                      </div>
+                      <div class="col-8">
+                        <div class="form-group">
+                          <label for="ContactName">Contact Name</label>
+                          <input #ContactName="ngModel" [(ngModel)]="s.ContactName" name="ContactName" id="ContactName" type="text" class="form-control" required>
+                          <div class="alert alert-danger" *ngIf="ContactName.touched && ContactName.invalid">
+                            Contact name is required.
+                          </div>
+                        </div>        
+                      </div>
+                     
+                  </div>
+                    
+                  <div class="form-group">
+                    <label for="Address">Address</label>
+                  <input #Address="ngModel" [(ngModel)]="s.Address" name="Address" id="Address" type="text" class="form-control" required>
+                  <div class="alert alert-danger" *ngIf="Address.touched && Address.invalid">
+                    Address is required.
+                  </div>
+                </div>
+ 
+                  <div class="row">
+                    <div class="col-3">
+                      <div class="form-group">
+                        <label for="City">City</label>
+                        <input #City="ngModel" [(ngModel)]="s.City" name="City" id="City" type="text" class="form-control" required>
+                        <div class="alert alert-danger" *ngIf="City.touched && City.invalid">
+                          City is required.
+                        </div>
+                      </div>        
+                    </div>
+                    <div class="col-3">
+                      <div class="form-group">
+                        <label for="Region">Region</label>
+                        <input #Region="ngModel" [(ngModel)]="s.Region" name="Region" id="Region" type="text" class="form-control" required>
+                        <div class="alert alert-danger" *ngIf="Region.touched && Region.invalid">
+                          Region is required.
+                        </div>
+                      </div>        
+                    </div>
+                    <div class="col-3">
+                      <div class="form-group">
+                        <label for="Country">Country</label>
+                        <input #Country="ngModel" [(ngModel)]="s.Country" name="Country" id="Country" type="text" class="form-control">
+                        <!-- <div class="alert alert-danger" *ngIf="Country.touched && Country.invalid">
+                          Region is required.
+                        </div> -->
+                      </div>        
+                    </div>
+                    <div class="col-3">
+                      <div class="form-group">
+                        <label for="PostalCode">Postal Code</label>
+                        <input #PostalCode="ngModel" [(ngModel)]="s.PostalCode" name="PostalCode" id="PostalCode" type="text" class="form-control">
+                        <!-- <div class="alert alert-danger" *ngIf="Country.touched && Country.invalid">
+                          Region is required.
+                        </div> -->
+                      </div>        
+                    </div>
+                </div>
+      
+                <div class="row">
+                  <div class="col-6">
+                      <div class="form-group">
+                          <label for="HomePage">Website</label>
+                          <input #HomePage="ngModel" [(ngModel)]="s.HomePage" name="HomePage" id="HomePage" type="text" class="form-control">
+                          <!-- <div class="alert alert-danger" *ngIf="Country.touched && Country.invalid">
+                            Region is required.
+                          </div> -->
+                        </div>        
+                  </div>
+                  <div class="col-3">
+                      <div class="form-group">
+                        <label for="Phone">Phone</label>
+                        <input #Phone="ngModel" [(ngModel)]="s.Phone" name="Phone" id="Phone" type="text" class="form-control" required>
+                        <div class="alert alert-danger" *ngIf="Phone.touched && Phone.invalid">
+                          Phone is required.
+                        </div>
+                    </div>        
+                  </div>
+                  <div class="col-3">
+                        <div class="form-group">
+                          <label for="Fax">Fax/ Other Phone</label>
+                          <input #Fax="ngModel" [(ngModel)]="s.Fax" name="Fax" id="Fax" type="text" class="form-control" required>
+                          <div class="alert alert-danger" *ngIf="Fax.touched && Fax.invalid">
+                            Fax/ Other Phone is required.
+                          </div>
+                        </div>        
+                  </div>
+                </div>
+
+                  <button type="button" (click)="back()" id="back" class="btn btn-primary">Back</button> 
+                  <span>-</span>
+                  <button type="submit" [disabled]="!f.valid" class="btn btn-primary">Save</button>
+                  <span>-</span>
+                  <button type="button" (click)="delete()" id="delete" class="btn btn-danger">Delete</button> 
+                </form>    
+                
+            </div>
+          </div>
+      </nb-card-body>
+    </nb-card>
+</div>
+</div>

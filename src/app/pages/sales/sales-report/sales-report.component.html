@@ -15,10 +15,10 @@
             </div>
             <div class="col-md-4">
                 <!-- <select #Flag="ngModel" [(ngModel)]="" name="Flag" id="Flag" aria-placeholder="Order flag" class="form-control" required> -->
-                <select #selectedreport="ngModel" [(ngModel)]="reporttype" (change)="onselectedcustomer(selectedreport.value)" name="selectedreport" id="selectedreport" class="form-control" >
-                    <option selected>Fulfilled</option>
-                    <option>Not Settled</option>
-                    <option>Settled</option>
+                <select #selectedreport="ngModel" [(ngModel)]="reporttype" (change)="onselectedreport(selectedreport.value)" name="selectedreport" id="selectedreport" class="form-control" >
+                    <option value="fullfilled">Fulfilled</option>
+                    <option value="notsettled">Not Settled</option>
+                    <option value="settled">Settled</option>
                 </select>
             </div>
           </div>

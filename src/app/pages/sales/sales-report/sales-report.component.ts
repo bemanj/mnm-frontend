@@ -61,8 +61,21 @@ export class SalesReportComponent implements OnInit  {
       .then(items => this.items = items);    
   }
 
-  onselectedcustomer(value) {
-    console.log(value);
+  onselectedreport(value) {
+    if (value == 'fullfilled') {
+      console.log(1);
+      this.getFullfilled();
+
+    } else if (value == 'notsettled') {
+      console.log(2);
+      this.getNotSettled();
+
+    } else if (value == 'settled') {
+      console.log(3);
+      this.getSettled();
+      
+    }
+    
   }
  
   getTotalSalesByDateRange() {
@@ -77,21 +90,45 @@ export class SalesReportComponent implements OnInit  {
     this.router.navigate(['/sales-order']);
   } 
 
-    getSalesReport() {
-      
-    }
+  getSalesReport() {
+    
+  }
 
-     ngOnInit() {
-      this.subscription = this.salesreportservice.getFulfilledSO()
-      .subscribe(salesReport => {
-        this.salesReport = salesReport;
-        this.initializeTable(salesReport);
-      });
+  getFullfilled() {
+    this.subscription = this.salesreportservice.getFulfilledSO()
+    .subscribe(salesReport => {
+      this.salesReport = salesReport;
+      this.initializeTable(salesReport);
+    });
+  }
 
-      this.getTotalSalesByDateRange()
-    }
+  getNotSettled() {
+    this.subscription = this.salesreportservice.getNotSettledSO()
+    .subscribe(salesReport => {
+      this.salesReport = salesReport;
+      this.initializeTable(salesReport);
+    });
+  }
 
-    ngOnDestroy(){
-      this.subscription.unsubscribe();
-    }
+  getSettled() {
+    this.subscription = this.salesreportservice.getSettledSO()
+    .subscribe(salesReport => {
+      this.salesReport = salesReport;
+      this.initializeTable(salesReport);
+    });
+  }
+
+  ngOnInit() {
+    // this.subscription = this.salesreportservice.getFulfilledSO()
+    // .subscribe(salesReport => {
+    //   this.salesReport = salesReport;
+    //   this.initializeTable(salesReport);
+    // });
+
+    // this.getTotalSalesByDateRange()
+  }
+
+  ngOnDestroy(){
+    this.subscription.unsubscribe();
+  }
 }

@@ -29,8 +29,6 @@ export class SalesReportService {
     .subscribe();
   }
 
-
-
   // sales orders
   getAllSO() {
          return this.http.get(this._url + 'SalesOrderHeaders/')
@@ -40,6 +38,20 @@ export class SalesReportService {
 
   getFulfilledSO() {
     return this.http.get(this._url + 'FulfilledReportSalesOrder/1?daterange=get')
+    .do(this.logResponse)
+    .map((res: Response) => res.json());
+  }
+
+  // NotSettledOrder 
+  getNotSettledSO() {
+    return this.http.get(this._url + 'NotSettledOrder')
+    .do(this.logResponse)
+    .map((res: Response) => res.json());
+  }
+
+  // SettledSalesOrder
+  getSettledSO() {
+    return this.http.get(this._url + 'SettledSalesOrder')
     .do(this.logResponse)
     .map((res: Response) => res.json());
   }

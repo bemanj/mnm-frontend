@@ -29,7 +29,7 @@ export class SupplierService {
     .subscribe((res: Response) => res.json());;
   }
 
-  get(id) { 
+  getById(id) { 
     return this.http.get(this._url + 'suppliers/' + id)
     .do(this.logResponse)
     .map((res: Response) => res.json());
@@ -41,6 +41,10 @@ export class SupplierService {
       .map((res: Response) => res.json());
   }
 
+  delete(id) {
+    this.http.delete(this._url + 'suppliers/' + id)
+    .subscribe((res: Response) => res.json());
+  }
 
   private logResponse(res: Response) {
     console.log(res);
